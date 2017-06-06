@@ -13,14 +13,10 @@
  */
 package de.mrapp.util;
 
-import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,28 +29,7 @@ import static org.junit.Assert.fail;
  *
  * @author Michael Rapp
  */
-public class ConditionTest {
-
-    /**
-     * Returns the file, which can be used for test purposes.
-     *
-     * @return The file, which can be used for test purposes, as an instance of the class {@link
-     * File}. The file may not be null
-     */
-    @NotNull
-    private File getTestFile() {
-        try {
-            URL url = getClass().getClassLoader().getResource("test.txt");
-
-            if (url != null) {
-                return Paths.get(url.toURI()).toFile();
-            }
-
-            throw new RuntimeException("Failed to retrieve path of file");
-        } catch (URISyntaxException e) {
-            throw new RuntimeException("Failed to read file", e);
-        }
-    }
+public class ConditionTest extends AbstractFileTest {
 
     /**
      * Tests the functionality of the method, which allows to ensure that a boolean expression is
