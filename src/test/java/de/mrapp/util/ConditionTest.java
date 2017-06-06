@@ -13,7 +13,6 @@
  */
 package de.mrapp.util;
 
-import junit.framework.Assert;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
@@ -25,9 +24,9 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
-import static de.mrapp.util.Condition.ensureNotEmpty;
 import static de.mrapp.util.Condition.ensureNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Tests the functionality of the class {@link Condition}.
@@ -37,28 +36,23 @@ import static org.junit.Assert.assertEquals;
 public class ConditionTest {
 
     /**
-     * Returns the file, which corresponds to a specific file name.
+     * Returns the file, which can be used for test purposes.
      *
-     * @param fileName The file name, which corresponds to the file, which should be returned, as a
-     *                 {@link String}. The string may neither be null, nor empty
-     * @return The file, which corresponds to the given file name, as an instance of the class
-     * {@link File}. The file may not be null
+     * @return The file, which can be used for test purposes, as an instance of the class {@link
+     * File}. The file may not be null
      */
     @NotNull
-    private File getFile(@NotNull final String fileName) {
-        ensureNotNull(fileName, "The file name may not be null");
-        ensureNotEmpty(fileName, "The file name may not be empty");
-
+    private File getTestFile() {
         try {
-            URL url = getClass().getClassLoader().getResource(fileName);
+            URL url = getClass().getClassLoader().getResource("test.txt");
 
             if (url != null) {
                 return Paths.get(url.toURI()).toFile();
             }
 
-            throw new RuntimeException("Failed to retrieve path of file \"" + fileName + "\"");
+            throw new RuntimeException("Failed to retrieve path of file");
         } catch (URISyntaxException e) {
-            throw new RuntimeException("Failed to read file \"" + fileName + "\"", e);
+            throw new RuntimeException("Failed to read file", e);
         }
     }
 
@@ -72,7 +66,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureTrue(false, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -97,7 +91,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureTrue(false, message, IllegalStateException.class);
-            Assert.fail();
+            fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
         }
@@ -122,7 +116,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureFalse(true, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -147,7 +141,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureFalse(true, message, IllegalStateException.class);
-            Assert.fail();
+            fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
         }
@@ -172,7 +166,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureEqual("foo", "bar", message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -188,7 +182,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureEqual(null, "bar", message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -204,7 +198,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureEqual("foo", null, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -230,7 +224,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureNotEqual("foo", "foo", message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -246,7 +240,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureNotEqual(null, null, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -273,7 +267,7 @@ public class ConditionTest {
 
         try {
             ensureNotNull(null, message);
-            Assert.fail();
+            fail();
         } catch (NullPointerException e) {
             assertEquals(message, e.getMessage());
         }
@@ -298,7 +292,7 @@ public class ConditionTest {
 
         try {
             ensureNotNull(null, message, IllegalArgumentException.class);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -323,7 +317,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureNotEmpty("", message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -348,7 +342,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureNotEmpty("", message, NullPointerException.class);
-            Assert.fail();
+            fail();
         } catch (NullPointerException e) {
             assertEquals(message, e.getMessage());
         }
@@ -373,7 +367,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast((short) 0, (short) 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -400,7 +394,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast((short) 0, (short) 1, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -426,7 +420,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0, 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -453,7 +447,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0, 1, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -479,7 +473,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0L, 1L, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -506,7 +500,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0L, 1L, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -532,7 +526,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0f, 1f, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -559,7 +553,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0f, 1f, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -585,7 +579,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0d, 1d, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -612,7 +606,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtLeast(0d, 1d, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -638,7 +632,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum((short) 2, (short) 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -666,7 +660,7 @@ public class ConditionTest {
         try {
             Condition.ensureAtMaximum((short) 2, (short) 1, message,
                     IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -692,7 +686,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2, 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -719,7 +713,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2, 1, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -745,7 +739,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2L, 1L, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -772,7 +766,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2L, 1L, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -798,7 +792,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2f, 1f, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -825,7 +819,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2f, 1f, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -851,7 +845,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2d, 1d, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -878,7 +872,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureAtMaximum(2d, 1d, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -904,7 +898,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater((short) 1, (short) 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -930,7 +924,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater((short) 1, (short) 1, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -956,7 +950,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1, 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -982,7 +976,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1, 1, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1008,7 +1002,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1L, 1L, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1034,7 +1028,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1L, 1L, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1060,7 +1054,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1f, 1f, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1086,7 +1080,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1f, 1f, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1112,7 +1106,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1d, 1d, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1138,7 +1132,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureGreater(1d, 1d, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1164,7 +1158,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller((short) 1, (short) 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1190,7 +1184,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller((short) 1, (short) 1, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1216,7 +1210,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1, 1, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1242,7 +1236,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1, 1, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1268,7 +1262,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1L, 1L, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1294,7 +1288,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1L, 1L, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1320,7 +1314,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1f, 1f, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1346,7 +1340,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1f, 1f, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1372,7 +1366,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1d, 1d, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1398,7 +1392,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureSmaller(1d, 1d, message, IndexOutOfBoundsException.class);
-            Assert.fail();
+            fail();
         } catch (IndexOutOfBoundsException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1425,7 +1419,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureNotEmpty(list, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1453,7 +1447,7 @@ public class ConditionTest {
 
         try {
             Condition.ensureNotEmpty(list, message, IllegalStateException.class);
-            Assert.fail();
+            fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1477,11 +1471,11 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileExistsThrowsException() {
         String message = "message";
-        File file = new File(getFile("test.txt").getParentFile(), "foo.txt");
+        File file = new File(getTestFile().getParentFile(), "foo.txt");
 
         try {
             Condition.ensureFileExists(file, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1497,7 +1491,7 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileExistsThrowsNoException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getTestFile();
         Condition.ensureFileExists(file, message);
     }
 
@@ -1508,11 +1502,11 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileExistsWithClassParameterThrowsException() {
         String message = "message";
-        File file = new File(getFile("test.txt").getParentFile(), "foo.txt");
+        File file = new File(getTestFile().getParentFile(), "foo.txt");
 
         try {
             Condition.ensureFileExists(file, message, IllegalStateException.class);
-            Assert.fail();
+            fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1528,7 +1522,7 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileExistsWithClassParameterThrowsNoException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getTestFile();
         Condition.ensureFileExists(file, message, IllegalStateException.class);
     }
 
@@ -1542,11 +1536,11 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileIsDirectoryThrowsException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getTestFile();
 
         try {
             Condition.ensureFileIsDirectory(file, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1562,7 +1556,7 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileIsDirectoryThrowsNoException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt").getParentFile();
+        File file = getTestFile().getParentFile();
         Condition.ensureFileIsDirectory(file, message);
     }
 
@@ -1577,11 +1571,11 @@ public class ConditionTest {
     public final void testEnsureFileIsDirectoryWithClassParameterThrowsException()
             throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getTestFile();
 
         try {
             Condition.ensureFileIsDirectory(file, message, IllegalStateException.class);
-            Assert.fail();
+            fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1598,7 +1592,7 @@ public class ConditionTest {
     public final void testEnsureFileIsDirectoryWithClassParameterThrowsNoException()
             throws IOException {
         String message = "message";
-        File file = getFile("test.txt").getParentFile();
+        File file = getTestFile().getParentFile();
         Condition.ensureFileIsDirectory(file, message, IllegalStateException.class);
     }
 
@@ -1612,11 +1606,11 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileIsNoDirectoryThrowsException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt").getParentFile();
+        File file = getTestFile().getParentFile();
 
         try {
             Condition.ensureFileIsNoDirectory(file, message);
-            Assert.fail();
+            fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1632,7 +1626,7 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileIsNoDirectoryThrowsNoException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getTestFile();
         Condition.ensureFileIsNoDirectory(file, message);
     }
 
@@ -1647,11 +1641,11 @@ public class ConditionTest {
     public final void testEnsureFileIsNoDirectoryWithClassParameterThrowsException()
             throws IOException {
         String message = "message";
-        File file = getFile("test.txt").getParentFile();
+        File file = getTestFile().getParentFile();
 
         try {
             Condition.ensureFileIsNoDirectory(file, message, IllegalStateException.class);
-            Assert.fail();
+            fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
         }
@@ -1668,7 +1662,7 @@ public class ConditionTest {
     public final void testEnsureFileIsNoDirectoryWithClassParameterThrowsNoException()
             throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getTestFile();
         Condition.ensureFileIsNoDirectory(file, message, IllegalStateException.class);
     }
 
