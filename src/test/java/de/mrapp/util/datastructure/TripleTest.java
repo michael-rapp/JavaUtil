@@ -13,18 +13,22 @@
  */
 package de.mrapp.util.datastructure;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static junit.framework.TestCase.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests the functionality of the class {@link Triple}.
  *
  * @author Michael Rapp
  */
-public class TripleTest extends TestCase {
+public class TripleTest {
 
     /**
      * Tests, if all properties are set correctly by the constructor.
      */
+    @Test
     public final void testConstructor() {
         Object first = new Object();
         Object second = new Object();
@@ -38,6 +42,7 @@ public class TripleTest extends TestCase {
     /**
      * Tests the functionality of the create-method.
      */
+    @Test
     public final void testCreate() {
         Object first = new Object();
         Object second = new Object();
@@ -51,6 +56,7 @@ public class TripleTest extends TestCase {
     /**
      * Tests the functionality of the hashCode-method.
      */
+    @Test
     public final void testHashCode() {
         Triple<String, String, String> triple1 = new Triple<>(null, null, null);
         Triple<String, String, String> triple2 = new Triple<>(null, null, null);
@@ -75,6 +81,7 @@ public class TripleTest extends TestCase {
     /**
      * Tests the functionality of the equals-method.
      */
+    @Test
     public final void testEquals() {
         Triple<String, String, String> triple1 = new Triple<>(null, null, null);
         Triple<String, String, String> triple2 = new Triple<>(null, null, null);
