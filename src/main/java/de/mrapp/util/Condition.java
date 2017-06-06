@@ -216,7 +216,7 @@ public final class Condition {
      *                         message
      */
     public static void ensureNotNull(final Object object, @Nullable final String exceptionMessage) {
-        ensureNotNull(object, exceptionMessage, NullPointerException.class);
+        ensureNotNull(object, exceptionMessage, IllegalArgumentException.class);
     }
 
     /**

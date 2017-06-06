@@ -243,7 +243,7 @@ public class ConditionTest extends AbstractFileTest {
         try {
             ensureNotNull(null, message);
             fail();
-        } catch (NullPointerException e) {
+        } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
         }
     }
@@ -266,9 +266,9 @@ public class ConditionTest extends AbstractFileTest {
         String message = "message";
 
         try {
-            ensureNotNull(null, message, IllegalArgumentException.class);
+            ensureNotNull(null, message, IllegalStateException.class);
             fail();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
         }
     }
