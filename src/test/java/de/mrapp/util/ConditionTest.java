@@ -28,7 +28,6 @@ import java.util.List;
 import static de.mrapp.util.Condition.ensureNotEmpty;
 import static de.mrapp.util.Condition.ensureNotNull;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Tests the functionality of the class {@link Condition}.
@@ -57,9 +56,9 @@ public class ConditionTest {
                 return Paths.get(url.toURI()).toFile();
             }
 
-            throw new RuntimeException("Failed to retrieve path of input file");
+            throw new RuntimeException("Failed to retrieve path of file \"" + fileName + "\"");
         } catch (URISyntaxException e) {
-            throw new RuntimeException("Failed to read input file", e);
+            throw new RuntimeException("Failed to read file \"" + fileName + "\"", e);
         }
     }
 
@@ -1478,7 +1477,7 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileExistsThrowsException() {
         String message = "message";
-        File file = getFile("foo.txt");
+        File file = new File(getFile("test.txt").getParentFile(), "foo.txt");
 
         try {
             Condition.ensureFileExists(file, message);
@@ -1499,14 +1498,7 @@ public class ConditionTest {
     public final void testEnsureFileExistsThrowsNoException() throws IOException {
         String message = "message";
         File file = getFile("test.txt");
-
-        try {
-            boolean created = file.createNewFile();
-            assertTrue(created);
-            Condition.ensureFileExists(file, message);
-        } finally {
-            file.delete();
-        }
+        Condition.ensureFileExists(file, message);
     }
 
     /**
@@ -1516,7 +1508,7 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileExistsWithClassParameterThrowsException() {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = new File(getFile("test.txt").getParentFile(), "foo.txt");
 
         try {
             Condition.ensureFileExists(file, message, IllegalStateException.class);
@@ -1537,14 +1529,7 @@ public class ConditionTest {
     public final void testEnsureFileExistsWithClassParameterThrowsNoException() throws IOException {
         String message = "message";
         File file = getFile("test.txt");
-
-        try {
-            boolean created = file.createNewFile();
-            assertTrue(created);
-            Condition.ensureFileExists(file, message, IllegalStateException.class);
-        } finally {
-            file.delete();
-        }
+        Condition.ensureFileExists(file, message, IllegalStateException.class);
     }
 
     /**
@@ -1560,14 +1545,10 @@ public class ConditionTest {
         File file = getFile("test.txt");
 
         try {
-            boolean created = file.createNewFile();
-            assertTrue(created);
             Condition.ensureFileIsDirectory(file, message);
             Assert.fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
-        } finally {
-            file.delete();
         }
     }
 
@@ -1581,15 +1562,8 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileIsDirectoryThrowsNoException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
-
-        try {
-            boolean created = file.mkdirs();
-            assertTrue(created);
-            Condition.ensureFileIsDirectory(file, message);
-        } finally {
-            file.delete();
-        }
+        File file = getFile("test.txt").getParentFile();
+        Condition.ensureFileIsDirectory(file, message);
     }
 
     /**
@@ -1606,14 +1580,10 @@ public class ConditionTest {
         File file = getFile("test.txt");
 
         try {
-            boolean created = file.createNewFile();
-            assertTrue(created);
             Condition.ensureFileIsDirectory(file, message, IllegalStateException.class);
             Assert.fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
-        } finally {
-            file.delete();
         }
     }
 
@@ -1628,15 +1598,8 @@ public class ConditionTest {
     public final void testEnsureFileIsDirectoryWithClassParameterThrowsNoException()
             throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
-
-        try {
-            boolean created = file.mkdirs();
-            assertTrue(created);
-            Condition.ensureFileIsDirectory(file, message, IllegalStateException.class);
-        } finally {
-            file.delete();
-        }
+        File file = getFile("test.txt").getParentFile();
+        Condition.ensureFileIsDirectory(file, message, IllegalStateException.class);
     }
 
     /**
@@ -1649,17 +1612,13 @@ public class ConditionTest {
     @Test
     public final void testEnsureFileIsNoDirectoryThrowsException() throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getFile("test.txt").getParentFile();
 
         try {
-            boolean created = file.mkdirs();
-            assertTrue(created);
             Condition.ensureFileIsNoDirectory(file, message);
             Assert.fail();
         } catch (IllegalArgumentException e) {
             assertEquals(message, e.getMessage());
-        } finally {
-            file.delete();
         }
     }
 
@@ -1674,14 +1633,7 @@ public class ConditionTest {
     public final void testEnsureFileIsNoDirectoryThrowsNoException() throws IOException {
         String message = "message";
         File file = getFile("test.txt");
-
-        try {
-            boolean created = file.createNewFile();
-            assertTrue(created);
-            Condition.ensureFileIsNoDirectory(file, message);
-        } finally {
-            file.delete();
-        }
+        Condition.ensureFileIsNoDirectory(file, message);
     }
 
     /**
@@ -1695,17 +1647,13 @@ public class ConditionTest {
     public final void testEnsureFileIsNoDirectoryWithClassParameterThrowsException()
             throws IOException {
         String message = "message";
-        File file = getFile("test.txt");
+        File file = getFile("test.txt").getParentFile();
 
         try {
-            boolean created = file.mkdirs();
-            assertTrue(created);
             Condition.ensureFileIsNoDirectory(file, message, IllegalStateException.class);
             Assert.fail();
         } catch (IllegalStateException e) {
             assertEquals(message, e.getMessage());
-        } finally {
-            file.delete();
         }
     }
 
@@ -1721,14 +1669,7 @@ public class ConditionTest {
             throws IOException {
         String message = "message";
         File file = getFile("test.txt");
-
-        try {
-            boolean created = file.createNewFile();
-            assertTrue(created);
-            Condition.ensureFileIsNoDirectory(file, message, IllegalStateException.class);
-        } finally {
-            file.delete();
-        }
+        Condition.ensureFileIsNoDirectory(file, message, IllegalStateException.class);
     }
 
 }
