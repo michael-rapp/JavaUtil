@@ -16,6 +16,10 @@ dependencies {
     testCompile 'org.mockito:mockito-core:2.8+'
 }
 
+def isReleaseBuild() {
+    return VERSION.contains("SNAPSHOT") == false
+}
+
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from tasks.javadoc.destinationDir
@@ -33,7 +37,7 @@ artifacts {
 }
 
 signing {
-    required { gradle.taskGraph.hasTask("uploadArchives") }
+    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
     sign configurations.archives
 }
 
@@ -42,8 +46,15 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
+            pom.groupId = GROUP
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = VERSION
+
             repository(url: RELEASE_REPOSITORY_URL) {
-                authentication(userName: "", password: "")
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+            snapshotRepository(url: SNAPSHOT_REPOSITORY_URL) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
             }
 
             pom.project {
