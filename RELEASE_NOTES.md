@@ -9,3 +9,4 @@ The first stable release of the library, which provides the following utility cl
 - The class `ArrayUtil` provides methods, which allow to handle arrays.
 - The class `FileUtil` provides methods, which allow to handle files.
 - The class `StreamUtil` provides methods, which allow to handle streams.
+- The classes `Pair` and `Triple` implement generic data structures, which ease to pass around two or three objects.
