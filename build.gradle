@@ -16,10 +16,6 @@ dependencies {
     testCompile 'org.mockito:mockito-core:[2.8,2.9)'
 }
 
-static def isReleaseBuild() {
-    return !VERSION.contains("SNAPSHOT")
-}
-
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from tasks.javadoc.destinationDir
@@ -37,7 +33,7 @@ artifacts {
 }
 
 signing {
-    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+    required { gradle.taskGraph.hasTask("uploadArchives") }
     sign configurations.archives
 }
 
