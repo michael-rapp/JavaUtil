@@ -63,7 +63,8 @@ public class Triple<F, S, T> {
      * @param first  The first object
      * @param second The second object
      * @param third  The third object
-     * @return The triple, which has been created, as an instance of the class {@link Triple}
+     * @return The triple, which has been created, as an instance of the class {@link Triple}. The
+     * triple may not be null
      */
     public static <F, S, T> Triple<F, S, T> create(final F first, final S second, final T third) {
         return new Triple<>(first, second, third);
