@@ -39,7 +39,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
      * The comparator, which is used to sort the list's items, or null, if the items' implementation
      * of the interface {@link Comparable} is used instead.
      */
-    private final Comparator<T> comparator;
+    private final Comparator<? super T> comparator;
 
     /**
      * Creates a new list, which automatically keeps its items in a sorted order, whenever new items
@@ -83,7 +83,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
      *                   the items' implementation of the interface {@link Comparable} should be
      *                   used instead
      */
-    public SortedArrayList(@Nullable final Comparator<T> comparator) {
+    public SortedArrayList(@Nullable final Comparator<? super T> comparator) {
         this.comparator = comparator;
     }
 
@@ -99,7 +99,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
      *                   used instead
      */
     public SortedArrayList(@NotNull final Collection<? extends T> items,
-                           @Nullable final Comparator<T> comparator) {
+                           @Nullable final Comparator<? super T> comparator) {
         this(items.size(), comparator);
         addAll(items);
     }
@@ -113,7 +113,8 @@ public class SortedArrayList<T> extends ArrayList<T> {
      *                        null, if the items' implementation of the interface {@link Comparable}
      *                        should be used instead
      */
-    public SortedArrayList(final int initialCapacity, @Nullable final Comparator<T> comparator) {
+    public SortedArrayList(final int initialCapacity,
+                           @Nullable final Comparator<? super T> comparator) {
         super(initialCapacity);
         this.comparator = comparator;
     }
@@ -126,7 +127,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
      * is used
      */
     @Nullable
-    public Comparator<T> comparator() {
+    public Comparator<? super T> comparator() {
         return comparator;
     }
 
