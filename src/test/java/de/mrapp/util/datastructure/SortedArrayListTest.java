@@ -27,9 +27,6 @@ import static org.mockito.Mockito.mock;
  */
 public class SortedArrayListTest {
 
-    /**
-     * Tests, if all properties are set correctly by the default constructor.
-     */
     @Test
     public final void testDefaultConstructor() {
         SortedArrayList<Integer> sortedArrayList = new SortedArrayList<>();
@@ -37,10 +34,6 @@ public class SortedArrayListTest {
         assertNull(sortedArrayList.comparator());
     }
 
-    /**
-     * Tests, if all properties are set correctly by the constructor, which expects a collection as
-     * a parameter.
-     */
     @Test
     public final void testConstructorWithCollectionParameter() {
         Collection<Integer> collection = Arrays.asList(4, 1, 2, 3, 2);
@@ -56,19 +49,11 @@ public class SortedArrayListTest {
         assertFalse(iterator.hasNext());
     }
 
-    /**
-     * Ensures, that an {@link IllegalArgumentException} is thrown by the constructor, which expects
-     * a collection as a parameter, if the collection is null.
-     */
     @Test(expected = IllegalArgumentException.class)
     public final void testConstructorWithCollectionParameterThrowsExceptionIfCollectionIsNull() {
         new SortedArrayList<>((Collection) null);
     }
 
-    /**
-     * Tests, if all properties are set correctly by the constructor, which expects an initial
-     * capacity as a parameter.
-     */
     @Test
     public final void testConstructorWithInitialCapacityParameter() {
         int initialCapacity = 10;
@@ -77,10 +62,6 @@ public class SortedArrayListTest {
         assertNull(sortedArrayList.comparator());
     }
 
-    /**
-     * Tests, if all properties are set correctly by the constructor, which expects a comparator as
-     * a parameter.
-     */
     @Test
     public final void testConstructorWithComparatorParameter() {
         Comparator<Integer> comparator = mock(Comparator.class);
@@ -89,10 +70,6 @@ public class SortedArrayListTest {
         assertEquals(sortedArrayList.comparator(), comparator);
     }
 
-    /**
-     * Tests, if all properties are set correctly by the constructor, which expects a collection and
-     * a comparator as parameters.
-     */
     @Test
     public final void testConstructorWithCollectionAndComparatorParameters() {
         Collection<Integer> collection = Arrays.asList(4, 1, 2, 3, 2);
@@ -109,20 +86,11 @@ public class SortedArrayListTest {
         assertFalse(iterator.hasNext());
     }
 
-    /**
-     * Ensures, that an {@link IllegalArgumentException} is thrown by the constructor, which expects
-     * a collection and a comparator as parameters, if the collection is null.
-     */
     @Test(expected = IllegalArgumentException.class)
     public final void testConstructorWithCollectionAndComparatorParametersThrowsExceptionIfCollectionIsNull() {
         new SortedArrayList<>(null, mock(Comparator.class));
     }
 
-
-    /**
-     * Tests, if all properties are set correctly by the constructor, which expects an initial
-     * capacity and a comparator as parameters.
-     */
     @Test
     public final void testConstructorWithInitialCapacityAndComparatorParameters() {
         int initialCapacity = 10;
@@ -133,9 +101,6 @@ public class SortedArrayListTest {
         assertEquals(sortedArrayList.comparator(), comparator);
     }
 
-    /**
-     * Tests the functionality of the add-method.
-     */
     @Test
     public final void testAdd() {
         SortedArrayList<Integer> sortedArrayList = new SortedArrayList<>();
@@ -153,27 +118,16 @@ public class SortedArrayListTest {
         assertEquals(iterator.next(), (Integer) 4);
     }
 
-    /**
-     * Ensures, that an {@link IllegalArgumentException} is thrown by the add-method, if the item is
-     * null.
-     */
     @Test(expected = IllegalArgumentException.class)
     public final void testAddThrowsExceptionIfItemIsNull() {
         new SortedArrayList<>().add(null);
     }
 
-    /**
-     * Ensures, that an {@link UnsupportedOperationException} is thrown, by the add-method, which
-     * expects an index as a parameter.
-     */
     @Test(expected = UnsupportedOperationException.class)
     public final void testAddWithIndexParameterThrowsException() {
         new SortedArrayList<>().add(0, 1);
     }
 
-    /**
-     * Tests the functionality of the addAll-method.
-     */
     @Test
     public final void testAddAll() {
         Collection<Integer> collection = Arrays.asList(4, 1, 2, 3, 2);
@@ -189,9 +143,6 @@ public class SortedArrayListTest {
         assertEquals(iterator.next(), (Integer) 4);
     }
 
-    /**
-     * Tests the functionality of the addAll-method, if the given collection is empty.
-     */
     @Test
     public final void testAddAllIfCollectionIsEmpty() {
         Collection<Integer> collection = new LinkedList<>();
@@ -201,19 +152,11 @@ public class SortedArrayListTest {
         assertTrue(sortedArrayList.isEmpty());
     }
 
-    /**
-     * Ensures, that an {@link IllegalArgumentException} is thrown by the addAll-method, if the
-     * collection is null.
-     */
     @Test(expected = IllegalArgumentException.class)
     public final void testAddAllThrowsExceptionIfCollectionIsNull() {
         new SortedArrayList<>().addAll(null);
     }
 
-    /**
-     * Ensures, that an {@link UnsupportedOperationException} is thrown, by the addAll-method, which
-     * expects an index as a parameter.
-     */
     @Test(expected = UnsupportedOperationException.class)
     public final void testAddAllWithIndexParameterThrowsException() {
         Collection<Integer> collection = Arrays.asList(1, 2, 3);

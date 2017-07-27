@@ -25,9 +25,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class PairTest {
 
-    /**
-     * Tests, if all properties are set correctly by the constructor.
-     */
     @Test
     public final void testConstructor() {
         Object first = new Object();
@@ -37,9 +34,6 @@ public class PairTest {
         assertEquals(second, pair.second);
     }
 
-    /**
-     * Tests the functionality of the create-method.
-     */
     @Test
     public final void testCreate() {
         Object first = new Object();
@@ -49,9 +43,6 @@ public class PairTest {
         assertEquals(second, pair.second);
     }
 
-    /**
-     * Tests the functionality of the hashCode-method.
-     */
     @Test
     public final void testHashCode() {
         Pair<String, String> pair1 = new Pair<>(null, null);
@@ -69,9 +60,6 @@ public class PairTest {
         assertNotSame(pair1.hashCode(), pair2.hashCode());
     }
 
-    /**
-     * Tests the functionality of the equals-method.
-     */
     @Test
     public final void testEquals() {
         Pair<String, String> pair1 = new Pair<>(null, null);

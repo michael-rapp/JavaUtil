@@ -24,10 +24,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class ClassUtilTest {
 
-    /**
-     * Tests the functionality of the method, which allows to retrieve a truncated version of a
-     * class' full qualified name.
-     */
     @Test
     public final void testGetTruncatedName() {
         assertEquals("j.l.Object", ClassUtil.getTruncatedName(Object.class));

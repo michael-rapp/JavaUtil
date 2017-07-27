@@ -31,10 +31,6 @@ import static org.junit.Assert.fail;
  */
 public class ConditionTest extends AbstractFileTest {
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * true, if the boolean expression is not true.
-     */
     @Test
     public final void testEnsureTrueThrowsException() {
         String message = "message";
@@ -47,19 +43,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * true, if the boolean expression is true.
-     */
     @Test
     public final void testEnsureTrueThrowsNoException() {
         Condition.ensureTrue(true, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * true and expects a class as a parameter, if the boolean expression is not true.
-     */
     @Test
     public final void testEnsureTrueWithClassParameterThrowsException() {
         String message = "message";
@@ -72,19 +60,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * true and expects a class as a parameter, if the boolean expression is true.
-     */
     @Test
     public final void testEnsureTrueWithClassParameterThrowsNoException() {
         Condition.ensureTrue(true, "message", IllegalStateException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * false, if the boolean expression is not false.
-     */
     @Test
     public final void testEnsureFalseThrowsException() {
         String message = "message";
@@ -97,19 +77,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * false, if the boolean expression is false.
-     */
     @Test
     public final void testEnsureFalseThrowsNoException() {
         Condition.ensureFalse(false, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * false and expects a class as a parameter, if the boolean expression is not false.
-     */
     @Test
     public final void testEnsureFalseWithClassParameterThrowsException() {
         String message = "message";
@@ -122,19 +94,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a boolean expression is
-     * false and expects a class as a parameter, if the boolean expression is false.
-     */
     @Test
     public final void testEnsureFalseWithClassParameterThrowsNoException() {
         Condition.ensureFalse(false, "message", IllegalStateException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that two objects are equal, if
-     * the objects are not equal.
-     */
     @Test
     public final void testEnsureEqualThrowsException1() {
         String message = "message";
@@ -147,10 +111,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that two objects are equal, if
-     * the objects are not equal.
-     */
     @Test
     public final void testEnsureEqualThrowsException2() {
         String message = "message";
@@ -163,10 +123,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that two objects are equal, if
-     * the objects are not equal.
-     */
     @Test
     public final void testEnsureEqualThrowsException3() {
         String message = "message";
@@ -179,20 +135,12 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that two objects are equal, if
-     * the objects are equal.
-     */
     @Test
     public final void testEnsureEqualThrowsNoException() {
         Condition.ensureEqual("foo", "foo", "message");
         Condition.ensureEqual(null, null, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that two objects are not equal,
-     * if the objects are equal.
-     */
     @Test
     public final void testEnsureNotEqualThrowsException1() {
         String message = "message";
@@ -205,10 +153,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that two objects are not equal,
-     * if the objects are equal.
-     */
     @Test
     public final void testEnsureNotEqualThrowsException2() {
         String message = "message";
@@ -221,10 +165,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that two objects are not equal,
-     * if the objects are not equal.
-     */
     @Test
     public final void testEnsureNotEqualThrowsNoException() {
         Condition.ensureNotEqual(false, "foo", "bar");
@@ -232,10 +172,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureNotEqual(false, null, "bar");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an object is not null, if
-     * the object is null.
-     */
     @Test
     public final void testEnsureNotNullThrowsException() {
         String message = "message";
@@ -248,19 +184,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an object is not null, if
-     * the object is not null.
-     */
     @Test
     public final void testEnsureNotNullThrowsNoException() {
         ensureNotNull(new Object(), "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an object is not null and
-     * expects a class as a parameter, if the object is null.
-     */
     @Test
     public final void testEnsureNotNullWithClassParameterThrowsException() {
         String message = "message";
@@ -273,19 +201,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an object is not null and
-     * expects a class as a parameter, if the object is not null.
-     */
     @Test
     public final void testEnsureNotNullWithClassParameterThrowsNoException() {
         ensureNotNull(new Object(), "message", IllegalArgumentException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a text is not empty, if
-     * the text is empty.
-     */
     @Test
     public final void testEnsureNotEmptyThrowsException() {
         String message = "message";
@@ -298,19 +218,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a text is not empty, if
-     * the text is not empty.
-     */
     @Test
     public final void testEnsureNotEmptyThrowsNoException() {
         Condition.ensureNotEmpty("text", "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a text is not empty and
-     * expects a class as a parameter, if the text is empty.
-     */
     @Test
     public final void testEnsureNotEmptyWithClassParameterThrowsException() {
         String message = "message";
@@ -323,19 +235,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a text is not empty and
-     * expects a class as a parameter, if the text is not empty.
-     */
     @Test
     public final void testEnsureNotEmptyWithClassParameterThrowsNoException() {
         Condition.ensureNotEmpty("text", "message", NullPointerException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at least as great as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithShortParameterThrowsException() {
         String message = "message";
@@ -348,21 +252,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at least as great as a reference value, if the value is equal or greater as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtLeastWithShortParameterThrowsNoException() {
         Condition.ensureAtLeast((short) 1, (short) 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at least as great as a reference value and expects a class as a parameter, if the value is
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithShortAndClassParametersThrowsException() {
         String message = "message";
@@ -375,20 +269,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at least as great as a reference value and expects a class as a parameter, if the value is
-     * equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithShortAndClassParametersThrowsNoException() {
         Condition.ensureAtLeast((short) 1, (short) 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at least as great as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithIntegerParameterThrowsException() {
         String message = "message";
@@ -401,21 +286,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at least as great as a reference value, if the value is equal or greater as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtLeastWithIntegerParameterThrowsNoException() {
         Condition.ensureAtLeast(1, 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at least as great as a reference value and expects a class as a parameter, if the value is
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithIntegerAndClassParametersThrowsException() {
         String message = "message";
@@ -428,20 +303,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at least as great as a reference value and expects a class as a parameter, if the value is
-     * equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithIntegerAndClassParametersThrowsNoException() {
         Condition.ensureAtLeast(1, 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is as
-     * least as great as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithLongParameterThrowsException() {
         String message = "message";
@@ -454,21 +320,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is as
-     * least as great as a reference value, if the value is equal or greater as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtLeastWithLongParameterThrowsNoException() {
         Condition.ensureAtLeast(1L, 1L, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is as
-     * least as great as a reference value and expects a class as a parameter, if the value is
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithLongAndClassParametersThrowsException() {
         String message = "message";
@@ -481,20 +337,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is as
-     * least as great as a reference value and expects a class as a parameter, if the value is equal
-     * or greater as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithLongAndClassParametersThrowsNoException() {
         Condition.ensureAtLeast(1L, 1L, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at least as great as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithFloatParameterThrowsException() {
         String message = "message";
@@ -507,21 +354,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at least as great as a reference value, if the value is equal or greater as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtLeastWithFloatParameterThrowsNoException() {
         Condition.ensureAtLeast(1f, 1f, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at least as great as a reference value and expects a class as a parameter, if the value is
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithFloatAndClassParametersThrowsException() {
         String message = "message";
@@ -534,20 +371,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at least as great as a reference value and expects a class as a parameter, if the value is
-     * equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithFloatAndClassParametersThrowsNoException() {
         Condition.ensureAtLeast(1f, 1f, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at least as great as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithDoubleParameterThrowsException() {
         String message = "message";
@@ -560,21 +388,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at least as great as a reference value, if the value is equal or greater as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtLeastWithDoubleParameterThrowsNoException() {
         Condition.ensureAtLeast(1d, 1d, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at least as great as a reference value and expects a class as a parameter, if the value is
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithDoubleAndClassParametersThrowsException() {
         String message = "message";
@@ -587,20 +405,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at least as great as a reference value and expects a class as a parameter, if the value is
-     * equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureAtLeastWithDoubleAndClassParametersThrowsNoException() {
         Condition.ensureAtLeast(1d, 1d, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at maximum as great as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithShortParameterThrowsException() {
         String message = "message";
@@ -613,21 +422,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at maximum as great as a reference value, if the value is equal or smaller as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtMaximumWithShortParameterThrowsNoException() {
         Condition.ensureAtMaximum((short) 1, (short) 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at maximum as great as a reference value and expects a class as a parameter, if the value is
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithShortAndClassParametersThrowsException() {
         String message = "message";
@@ -641,20 +440,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * at maximum as great as a reference value and expects a class as a parameter, if the value is
-     * equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithShortAndClassParametersThrowsNoException() {
         Condition.ensureAtMaximum((short) 1, (short) 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at maximum as great as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithIntegerParameterThrowsException() {
         String message = "message";
@@ -667,21 +457,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at maximum as great as a reference value, if the value is equal or smaller as the
-     * reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithIntegerParameterThrowsNoException() {
         Condition.ensureAtMaximum(1, 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at maximum as great as a reference value and expects a class as a parameter, if the value
-     * is greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithIntegerAndClassParametersThrowsException() {
         String message = "message";
@@ -694,20 +474,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is at maximum as great as a reference value and expects a class as a parameter, if the value
-     * is equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithIntegerAndClassParametersThrowsNoException() {
         Condition.ensureAtMaximum(1, 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is at
-     * maximum as great as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithLongParameterThrowsException() {
         String message = "message";
@@ -720,21 +491,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is at
-     * maximum as great as a reference value, if the value is equal or smaller as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtMaximumWithLongParameterThrowsNoException() {
         Condition.ensureAtMaximum(1L, 1L, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is at
-     * maximum as great as a reference value and expects a class as a parameter, if the value is
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithLongAndClassParametersThrowsException() {
         String message = "message";
@@ -747,20 +508,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is at
-     * maximum as great as a reference value and expects a class as a parameter, if the value is
-     * equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithLongAndClassParametersThrowsNoException() {
         Condition.ensureAtMaximum(1L, 1L, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at maximum as great as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithFloatParameterThrowsException() {
         String message = "message";
@@ -773,21 +525,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at maximum as great as a reference value, if the value is equal or smaller as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtMaximumWithFloatParameterThrowsNoException() {
         Condition.ensureAtMaximum(1f, 1f, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at maximum as great as a reference value and expects a class as a parameter, if the value is
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithFloatAndClassParametersThrowsException() {
         String message = "message";
@@ -800,20 +542,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * at maximum as great as a reference value and expects a class as a parameter, if the value is
-     * equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithFloatAndClassParametersThrowsNoException() {
         Condition.ensureAtMaximum(1f, 1f, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at maximum as great as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithDoubleParameterThrowsException() {
         String message = "message";
@@ -826,21 +559,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at maximum as great as a reference value, if the value is equal or smaller as the reference
-     * value.
-     */
     @Test
     public final void testEnsureAtMaximumWithDoubleParameterThrowsNoException() {
         Condition.ensureAtMaximum(1d, 1d, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at maximum as great as a reference value and expects a class as a parameter, if the value is
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithDoubleAndClassParametersThrowsException() {
         String message = "message";
@@ -853,20 +576,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * at maximum as great as a reference value and expects a class as a parameter, if the value is
-     * equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureAtMaximumWithDoubleAndClassParametersThrowsNoException() {
         Condition.ensureAtMaximum(1d, 1d, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * greater as a reference value, if the value is equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithShortParameterThrowsException() {
         String message = "message";
@@ -879,20 +593,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * greater as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithShortParameterThrowsNoException() {
         Condition.ensureGreater((short) 2, (short) 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * greater as a reference value and expects a class as a parameter, if the value is equal or
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithShortAndClassParametersThrowsException() {
         String message = "message";
@@ -905,20 +610,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * greater as a reference value and expects a class as a parameter, if the value is greater as
-     * the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithShortAndClassParametersThrowsNoException() {
         Condition.ensureGreater((short) 2, (short) 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is greater as a reference value, if the value is equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithIntegerParameterThrowsException() {
         String message = "message";
@@ -931,20 +627,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is greater as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithIntegerParameterThrowsNoException() {
         Condition.ensureGreater(2, 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is greater as a reference value and expects a class as a parameter, if the value is equal or
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithIntegerAndClassParametersThrowsException() {
         String message = "message";
@@ -957,20 +644,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is greater as a reference value and expects a class as a parameter, if the value is greater
-     * as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithIntegerAndClassParametersThrowsNoException() {
         Condition.ensureGreater(2, 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * greater as a reference value, if the value is equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithLongParameterThrowsException() {
         String message = "message";
@@ -983,20 +661,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * greater as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithLongParameterThrowsNoException() {
         Condition.ensureGreater(2L, 1L, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * greater as a reference value and expects a class as a parameter, if the value is equal or
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithLongAndClassParametersThrowsException() {
         String message = "message";
@@ -1009,20 +678,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * greater as a reference value and expects a class as a parameter, if the value is greater as
-     * the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithLongAndClassParametersThrowsNoException() {
         Condition.ensureGreater(2L, 1L, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * greater as a reference value, if the value is equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithFloatParameterThrowsException() {
         String message = "message";
@@ -1035,20 +695,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * greater as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithFloatParameterThrowsNoException() {
         Condition.ensureGreater(2f, 1f, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * greater as a reference value and expects a class as a parameter, if the value is equal or
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithFloatAndClassParametersThrowsException() {
         String message = "message";
@@ -1061,20 +712,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * greater as a reference value and expects a class as a parameter, if the value is greater as
-     * the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithFloatAndClassParametersThrowsNoException() {
         Condition.ensureGreater(2f, 1f, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * greater as a reference value, if the value is equal or smaller as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithDoubleParameterThrowsException() {
         String message = "message";
@@ -1087,20 +729,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * greater as a reference value, if the value is greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithDoubleParameterThrowsNoException() {
         Condition.ensureGreater(2d, 1d, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * greater as a reference value and expects a class as a parameter, if the value is equal or
-     * greater as the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithDoubleAndClassParametersThrowsException() {
         String message = "message";
@@ -1113,20 +746,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * greater as a reference value and expects a class as a parameter, if the value is greater as
-     * the reference value.
-     */
     @Test
     public final void testEnsureGreaterWithDoubleAndClassParametersThrowsNoException() {
         Condition.ensureGreater(2d, 1d, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * smaller as a reference value, if the value is equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithShortParameterThrowsException() {
         String message = "message";
@@ -1139,20 +763,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * smaller as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithShortParameterThrowsNoException() {
         Condition.ensureSmaller((short) 0, (short) 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is equal or
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithShortAndClassParametersThrowsException() {
         String message = "message";
@@ -1165,20 +780,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Short} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is smaller as
-     * the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithShortAndClassParametersThrowsNoException() {
         Condition.ensureSmaller((short) 0, (short) 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is smaller as a reference value, if the value is equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithIntegerParameterThrowsException() {
         String message = "message";
@@ -1191,20 +797,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is smaller as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithIntegerParameterThrowsNoException() {
         Condition.ensureSmaller(0, 1, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is smaller as a reference value and expects a class as a parameter, if the value is equal or
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithIntegerAndClassParametersThrowsException() {
         String message = "message";
@@ -1217,20 +814,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Integer} value
-     * is smaller as a reference value and expects a class as a parameter, if the value is smaller
-     * as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithIntegerAndClassParametersThrowsNoException() {
         Condition.ensureSmaller(0, 1, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * smaller as a reference value, if the value is equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithLongParameterThrowsException() {
         String message = "message";
@@ -1243,20 +831,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * smaller as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithLongParameterThrowsNoException() {
         Condition.ensureSmaller(0L, 1L, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is equal or
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithLongAndClassParametersThrowsException() {
         String message = "message";
@@ -1269,20 +848,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Long} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is smaller as
-     * the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithLongAndClassParametersThrowsNoException() {
         Condition.ensureSmaller(0L, 1L, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * smaller as a reference value, if the value is equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithFloatParameterThrowsException() {
         String message = "message";
@@ -1295,20 +865,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * smaller as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithFloatParameterThrowsNoException() {
         Condition.ensureSmaller(0f, 1f, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is equal or
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithFloatAndClassParametersThrowsException() {
         String message = "message";
@@ -1321,20 +882,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Float} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is smaller as
-     * the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithFloatAndClassParametersThrowsNoException() {
         Condition.ensureSmaller(0f, 1f, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * smaller as a reference value, if the value is equal or greater as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithDoubleParameterThrowsException() {
         String message = "message";
@@ -1347,20 +899,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * smaller as a reference value, if the value is smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithDoubleParameterThrowsNoException() {
         Condition.ensureSmaller(0d, 1d, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is equal or
-     * smaller as the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithDoubleAndClassParametersThrowsException() {
         String message = "message";
@@ -1373,20 +916,11 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link Double} value is
-     * smaller as a reference value and expects a class as a parameter, if the value is smaller as
-     * the reference value.
-     */
     @Test
     public final void testEnsureSmallerWithDoubleAndClassParametersThrowsNoException() {
         Condition.ensureSmaller(0d, 1d, "message", IndexOutOfBoundsException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Iterable} is not
-     * empty, if the iterable is empty.
-     */
     @Test
     public final void testEnsureIterableNotEmptyThrowsException() {
         String message = "message";
@@ -1400,10 +934,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Iterable} is not
-     * empty, if the iterable is not empty.
-     */
     @Test
     public final void testEnsureIterableNotEmptyThrowsNoException() {
         List<Object> list = new LinkedList<>();
@@ -1411,10 +941,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureNotEmpty(list, "message");
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Iterable} is not
-     * empty and expects a class as a parameter, if the iterable is empty.
-     */
     @Test
     public final void testEnsureIterableNotEmptyWithClassParameterThrowsException() {
         String message = "message";
@@ -1428,10 +954,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that an {@link Iterable} is not
-     * empty and expects a class as a parameter, if the iterable is not empty.
-     */
     @Test
     public final void testEnsureIterableNotEmptyWithClassParameterThrowsNoException() {
         List<Object> list = new LinkedList<>();
@@ -1439,10 +961,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureNotEmpty(list, "message", IllegalStateException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} exists, if
-     * the file does not exist.
-     */
     @Test
     public final void testEnsureFileExistsThrowsException() {
         String message = "message";
@@ -1456,13 +974,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} exists, if
-     * the file does exist.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileExistsThrowsNoException() throws IOException {
         String message = "message";
@@ -1470,10 +981,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureFileExists(file, message);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} exists and
-     * expects a class as a parameter, if the file does not exist.
-     */
     @Test
     public final void testEnsureFileExistsWithClassParameterThrowsException() {
         String message = "message";
@@ -1487,13 +994,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} exists and
-     * expects a class as a paramter, if the file does exist.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileExistsWithClassParameterThrowsNoException() throws IOException {
         String message = "message";
@@ -1501,13 +1001,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureFileExists(file, message, IllegalStateException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is a
-     * directory, if the file is not a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsDirectoryThrowsException() throws IOException {
         String message = "message";
@@ -1521,13 +1014,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is a
-     * directory, if the file is a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsDirectoryThrowsNoException() throws IOException {
         String message = "message";
@@ -1535,13 +1021,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureFileIsDirectory(file, message);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is a
-     * directory and expects a class as a parameter, if the file is not a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsDirectoryWithClassParameterThrowsException()
             throws IOException {
@@ -1556,13 +1035,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is a
-     * directory and expects a class as a parameter, if the file is a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsDirectoryWithClassParameterThrowsNoException()
             throws IOException {
@@ -1571,13 +1043,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureFileIsDirectory(file, message, IllegalStateException.class);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is not a
-     * directory, if the file is a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsNoDirectoryThrowsException() throws IOException {
         String message = "message";
@@ -1591,13 +1056,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is not a
-     * directory, if the file is not a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsNoDirectoryThrowsNoException() throws IOException {
         String message = "message";
@@ -1605,13 +1063,6 @@ public class ConditionTest extends AbstractFileTest {
         Condition.ensureFileIsNoDirectory(file, message);
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is not a
-     * directory and expects a class as a parameter, if the file is a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsNoDirectoryWithClassParameterThrowsException()
             throws IOException {
@@ -1626,13 +1077,6 @@ public class ConditionTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the method, which allows to ensure that a {@link File} is not a
-     * directory and expects a class as a parameter, if the file is not a directory.
-     *
-     * @throws IOException The exception, which is thrown, if an error occurs while creating the
-     *                     file
-     */
     @Test
     public final void testEnsureFileIsNoDirectoryWithClassParameterThrowsNoException()
             throws IOException {

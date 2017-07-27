@@ -27,11 +27,6 @@ import static org.mockito.Mockito.*;
  */
 public class StreamUtilTest {
 
-    /**
-     * Tests the functionality of the close-method.
-     *
-     * @throws IOException The exception, which is thrown, if closing a stream fails
-     */
     @Test
     public final void testClose() throws IOException {
         StreamUtil.close(null);

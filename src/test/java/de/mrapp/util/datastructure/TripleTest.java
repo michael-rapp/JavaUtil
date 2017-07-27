@@ -25,9 +25,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class TripleTest {
 
-    /**
-     * Tests, if all properties are set correctly by the constructor.
-     */
     @Test
     public final void testConstructor() {
         Object first = new Object();
@@ -39,9 +36,6 @@ public class TripleTest {
         assertEquals(third, triple.third);
     }
 
-    /**
-     * Tests the functionality of the create-method.
-     */
     @Test
     public final void testCreate() {
         Object first = new Object();
@@ -53,9 +47,6 @@ public class TripleTest {
         assertEquals(third, triple.third);
     }
 
-    /**
-     * Tests the functionality of the hashCode-method.
-     */
     @Test
     public final void testHashCode() {
         Triple<String, String, String> triple1 = new Triple<>(null, null, null);
@@ -78,9 +69,6 @@ public class TripleTest {
         assertNotSame(triple1.hashCode(), triple2.hashCode());
     }
 
-    /**
-     * Tests the functionality of the equals-method.
-     */
     @Test
     public final void testEquals() {
         Triple<String, String, String> triple1 = new Triple<>(null, null, null);

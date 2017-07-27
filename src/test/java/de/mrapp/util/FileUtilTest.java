@@ -27,9 +27,6 @@ import static junit.framework.TestCase.*;
  */
 public class FileUtilTest extends AbstractFileTest {
 
-    /**
-     * Tests the functionality of the mkdir-method.
-     */
     @Test
     public final void testMkdir() {
         File dir = new File(getTestFile().getParent(), "dir");
@@ -47,9 +44,6 @@ public class FileUtilTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the mkdirs-method.
-     */
     @Test
     public final void testMkdirs() {
         File dir = new File(getTestFile().getParent(), "dir" + File.separator + "subdir");
@@ -67,9 +61,6 @@ public class FileUtilTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the delete-method.
-     */
     @Test
     public final void testDelete() {
         File dir = new File(getTestFile().getParent(), "dir");
@@ -85,9 +76,6 @@ public class FileUtilTest extends AbstractFileTest {
         assertFalse(dir.exists());
     }
 
-    /**
-     * Tests the functionality of the deleteRecursively-method.
-     */
     @Test
     public final void testDeleteRecursively() {
         File dir = new File(getTestFile().getParent(), "dir" + File.separator + "subdir");
@@ -103,9 +91,6 @@ public class FileUtilTest extends AbstractFileTest {
         assertFalse(dir.getParentFile().exists());
     }
 
-    /**
-     * Tests the functionality of the createNewFile-method.
-     */
     @Test
     public final void testCreateNewFile() {
         File file = new File(getTestFile().getParent(), "file");
@@ -131,9 +116,6 @@ public class FileUtilTest extends AbstractFileTest {
         }
     }
 
-    /**
-     * Tests the functionality of the createNewFile-method, when overwriting existing files.
-     */
     @Test
     public final void testCreateNewFileOverride() {
         File file = new File(getTestFile().getParent(), "file");

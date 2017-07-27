@@ -26,9 +26,6 @@ import static org.junit.Assert.assertTrue;
  */
 public class ArrayUtilTest {
 
-    /**
-     * Tests the functionality of the indexOf-method, if the value is contained by the array.
-     */
     @Test
     public final void testIndexOf() {
         boolean[] array = {false, true, true, false};
@@ -36,9 +33,6 @@ public class ArrayUtilTest {
         assertEquals(1, index);
     }
 
-    /**
-     * Tests the functionality of the indexOf-method, if the value is not contained by the array.
-     */
     @Test
     public final void testIndexOfIfValueIsNotContained() {
         boolean[] array = {false, false, false, false};
@@ -46,9 +40,6 @@ public class ArrayUtilTest {
         assertEquals(-1, index);
     }
 
-    /**
-     * Tests the functionality of the lastIndexOf-method, if the value is contained by the array.
-     */
     @Test
     public final void testLastIndexOf() {
         boolean[] array = {false, true, true, false};
@@ -56,10 +47,6 @@ public class ArrayUtilTest {
         assertEquals(2, index);
     }
 
-    /**
-     * Tests the functionality of the lastIndexOf-method, if the value is not contained by the
-     * array.
-     */
     @Test
     public final void testLastIndexOfIfValueIsNotContained() {
         boolean[] array = {false, false, false, false};
@@ -67,18 +54,12 @@ public class ArrayUtilTest {
         assertEquals(-1, index);
     }
 
-    /**
-     * Tests the functionality of the contains-method, if the value is contained by the array.
-     */
     @Test
     public final void testContains() {
         boolean[] array = {false, true, true, false};
         assertTrue(ArrayUtil.contains(array, true));
     }
 
-    /**
-     * Tests the functionality of the contains-method, if the value is not contained by the array.
-     */
     @Test
     public final void testContainsIfValueIsNotContained() {
         boolean[] array = {false, false, false, false};
