@@ -60,7 +60,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
      *              added
      */
     public SortedArrayList(@NotNull final Collection<? extends T> items) {
-        this(items.size());
+        this((Comparator<T>) null);
         addAll(items);
     }
 
@@ -100,7 +100,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
      */
     public SortedArrayList(@NotNull final Collection<? extends T> items,
                            @Nullable final Comparator<? super T> comparator) {
-        this(items.size(), comparator);
+        this(comparator);
         addAll(items);
     }
 
