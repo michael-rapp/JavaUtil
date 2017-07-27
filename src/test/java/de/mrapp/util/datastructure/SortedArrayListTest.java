@@ -15,10 +15,7 @@ package de.mrapp.util.datastructure;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -139,6 +136,7 @@ public class SortedArrayListTest {
     /**
      * Tests the functionality of the add-method.
      */
+    @Test
     public final void testAdd() {
         SortedArrayList<Integer> sortedArrayList = new SortedArrayList<>();
         sortedArrayList.add(4);
@@ -148,11 +146,11 @@ public class SortedArrayListTest {
         sortedArrayList.add(2);
         assertEquals(sortedArrayList.size(), 5);
         Iterator<Integer> iterator = sortedArrayList.iterator();
-        assertEquals(iterator.next(), (Integer) 4);
-        assertEquals(iterator.next(), (Integer) 3);
-        assertEquals(iterator.next(), (Integer) 2);
-        assertEquals(iterator.next(), (Integer) 2);
         assertEquals(iterator.next(), (Integer) 1);
+        assertEquals(iterator.next(), (Integer) 2);
+        assertEquals(iterator.next(), (Integer) 2);
+        assertEquals(iterator.next(), (Integer) 3);
+        assertEquals(iterator.next(), (Integer) 4);
     }
 
     /**
@@ -176,17 +174,31 @@ public class SortedArrayListTest {
     /**
      * Tests the functionality of the addAll-method.
      */
+    @Test
     public final void testAddAll() {
         Collection<Integer> collection = Arrays.asList(4, 1, 2, 3, 2);
         SortedArrayList<Integer> sortedArrayList = new SortedArrayList<>();
-        sortedArrayList.addAll(collection);
+        boolean result = sortedArrayList.addAll(collection);
+        assertTrue(result);
         assertEquals(sortedArrayList.size(), collection.size());
         Iterator<Integer> iterator = sortedArrayList.iterator();
-        assertEquals(iterator.next(), (Integer) 4);
-        assertEquals(iterator.next(), (Integer) 3);
-        assertEquals(iterator.next(), (Integer) 2);
-        assertEquals(iterator.next(), (Integer) 2);
         assertEquals(iterator.next(), (Integer) 1);
+        assertEquals(iterator.next(), (Integer) 2);
+        assertEquals(iterator.next(), (Integer) 2);
+        assertEquals(iterator.next(), (Integer) 3);
+        assertEquals(iterator.next(), (Integer) 4);
+    }
+
+    /**
+     * Tests the functionality of the addAll-method, if the given collection is empty.
+     */
+    @Test
+    public final void testAddAllIfCollectionIsEmpty() {
+        Collection<Integer> collection = new LinkedList<>();
+        SortedArrayList<Integer> sortedArrayList = new SortedArrayList<>();
+        boolean result = sortedArrayList.addAll(collection);
+        assertFalse(result);
+        assertTrue(sortedArrayList.isEmpty());
     }
 
     /**

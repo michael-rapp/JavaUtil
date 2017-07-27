@@ -152,8 +152,13 @@ public class SortedArrayList<T> extends ArrayList<T> {
     @Override
     public final boolean addAll(@NotNull final Collection<? extends T> items) {
         ensureNotNull(items, "The collection may not be null");
-        items.forEach(this::add);
-        return true;
+
+        if (items.size() > 0) {
+            items.forEach(this::add);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
