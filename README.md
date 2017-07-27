@@ -12,7 +12,7 @@
 - The class `Pair` is a generic data structure, which eases to pass around a tuple of two objects.
 - The class `Triple` is a generic data structure, which eases to pass around a triple of three objects.
 - The class `SortedArrayList` is an extension of the class `java.util.ArrayList`, which keeps its items sorted whenever updated.
-- The class `SortedArraySet` is a sorted set, similar to a `java.util.TreeSet`, which detects duplicate items based on their hash codes instead of using the Comparable interface or the result of the compareTo-method.
+- The class `SortedArraySet` is a sorted set, similar to a `java.util.TreeSet`, which detects duplicate items based on their hash codes instead of using the `Comparable` interface or the result of the `compareTo`-method.
 
 ## License Agreement
 
