@@ -1,5 +1,12 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 1.1.0 (Jul. 28th 2017)
+
+A feature release, which introduces the following changes:
+
+- The class `SortedArrayList` has been added.
+- The class `SortedArraySet` has been added.
+
 ## Version 1.0.0 (Jun. 7th 2017)
 
 The first stable release of the library, which provides the following utility classes:
