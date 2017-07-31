@@ -66,10 +66,15 @@ public class SortedArraySetTest {
 
     @Test
     public final void testConstructorWithCollectionAndComparatorParameters() {
-        Collection<Integer> collection = Arrays.asList(1, 2, 3, 4, 5);
+        Collection<Integer> collection = Arrays.asList(2, 3, 5, 2, 4);
         Comparator<Integer> comparator = Comparator.reverseOrder();
         SortedArraySet<Integer> sortedArraySet = new SortedArraySet<>(collection, comparator);
-        assertTrue(sortedArraySet.containsAll(collection));
+        Iterator<Integer> iterator = sortedArraySet.iterator();
+        assertEquals((Integer) 5, iterator.next());
+        assertEquals((Integer) 4, iterator.next());
+        assertEquals((Integer) 3, iterator.next());
+        assertEquals((Integer) 2, iterator.next());
+        assertFalse(iterator.hasNext());
         assertEquals(comparator, sortedArraySet.comparator());
     }
 
@@ -274,13 +279,24 @@ public class SortedArraySetTest {
     @Test
     public final void testAdd() {
         SortedArraySet<Integer> sortedArraySet = new SortedArraySet<>();
-        boolean result = sortedArraySet.add(1);
+        boolean result = sortedArraySet.add(3);
         assertTrue(result);
         assertEquals(1, sortedArraySet.size());
-        result = sortedArraySet.add(1);
+        result = sortedArraySet.add(3);
         assertFalse(result);
         assertEquals(1, sortedArraySet.size());
-        assertEquals((Integer) 1, sortedArraySet.first());
+        sortedArraySet.add(4);
+        sortedArraySet.add(2);
+        sortedArraySet.add(1);
+        sortedArraySet.add(5);
+        assertEquals(5, sortedArraySet.size());
+        Iterator<Integer> iterator = sortedArraySet.iterator();
+        assertEquals((Integer) 1, iterator.next());
+        assertEquals((Integer) 2, iterator.next());
+        assertEquals((Integer) 3, iterator.next());
+        assertEquals((Integer) 4, iterator.next());
+        assertEquals((Integer) 5, iterator.next());
+        assertFalse(iterator.hasNext());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -324,12 +340,19 @@ public class SortedArraySetTest {
 
     @Test
     public final void testAddAll() {
-        Collection<Integer> collection = Arrays.asList(3, 2, 5, 1);
+        Collection<Integer> collection = Arrays.asList(3, 2, 4, 1, 5);
         SortedArraySet<Integer> sortedArraySet = new SortedArraySet<>();
         assertTrue(sortedArraySet.isEmpty());
         boolean result = sortedArraySet.addAll(collection);
         assertTrue(result);
         assertTrue(sortedArraySet.containsAll(collection));
+        Iterator<Integer> iterator = sortedArraySet.iterator();
+        assertEquals((Integer) 1, iterator.next());
+        assertEquals((Integer) 2, iterator.next());
+        assertEquals((Integer) 3, iterator.next());
+        assertEquals((Integer) 4, iterator.next());
+        assertEquals((Integer) 5, iterator.next());
+        assertFalse(iterator.hasNext());
         Collection<Integer> collection2 = Arrays.asList(5, 6);
         result = sortedArraySet.addAll(collection2);
         assertFalse(result);
