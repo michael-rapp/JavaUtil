@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 1.1.1 (Jul. 31th 2017)
+
+A minor release, which introduces the following changes:
+
+- Removed `final` modifiers from methods of the class `SortedArrayList` and `SortedArraySet`.
+
 ## Version 1.1.0 (Jul. 28th 2017)
 
 A feature release, which introduces the following changes:
