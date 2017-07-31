@@ -132,7 +132,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
     }
 
     @Override
-    public final boolean add(@NotNull final T item) {
+    public boolean add(@NotNull final T item) {
         ensureNotNull(item, "The item may not be null");
         int index = Collections.binarySearch(this, item, comparator);
 
@@ -145,12 +145,12 @@ public class SortedArrayList<T> extends ArrayList<T> {
     }
 
     @Override
-    public final void add(final int index, @NotNull final T item) {
+    public void add(final int index, @NotNull final T item) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public final boolean addAll(@NotNull final Collection<? extends T> items) {
+    public boolean addAll(@NotNull final Collection<? extends T> items) {
         ensureNotNull(items, "The collection may not be null");
 
         if (items.size() > 0) {
@@ -162,7 +162,7 @@ public class SortedArrayList<T> extends ArrayList<T> {
     }
 
     @Override
-    public final boolean addAll(final int index, @NotNull final Collection<? extends T> items) {
+    public boolean addAll(final int index, @NotNull final Collection<? extends T> items) {
         throw new UnsupportedOperationException();
     }
 
