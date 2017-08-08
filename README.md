@@ -30,6 +30,16 @@ dependencies {
 }
 ```
 
+When using Maven, the following dependency can be added to the `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.github.michael-rapp</groupId>
+    <artifactId>java-util</artifactId>
+    <version>1.1.1</version>
+</dependency>
+```
+
 ## Contact information
 
 For personal feedback or questions feel free to contact me via the mail address, which is mentioned on my [Github profile](https://github.com/michael-rapp). If you have found any bugs or want to post a feature request, please use the [bugtracker](https://github.com/michael-rapp/JavaUtil/issues) to report them.
