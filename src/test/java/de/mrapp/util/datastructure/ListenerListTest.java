@@ -74,6 +74,11 @@ public class ListenerListTest {
         assertEquals(0, list.size());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructorWithCompareMethodParameterThrowsException() {
+        new ListenerList<>(null);
+    }
+
     @Test
     public void testAdd() {
         TestType listener = new TestType(1);

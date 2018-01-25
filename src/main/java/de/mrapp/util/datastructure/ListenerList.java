@@ -21,11 +21,23 @@ import java.util.*;
 import static de.mrapp.util.Condition.ensureNotNull;
 
 /**
+ * A list, which is meant to be used for managing event listeners. The list ensures, that no
+ * duplicates or null elements can be added. For comparing listeners either the {@link
+ * Object#equals(Object)} method or the identity operator (==) can be used. Furthermore, this class
+ * is thread-safe and no {@link ConcurrentModificationException}s are thrown when adding or removing
+ * listeners while iterating the list.
+ * <p>
+ * This is list is neither serializable, nor does it override the {@link Object#equals(Object)} or
+ * {@link Object#hashCode()} method.
+ *
  * @author Michael Rapp
  * @since 1.2.0
  */
 public class ListenerList<T> implements Iterable<T> {
 
+    /**
+     * Contains all possible methods for comparing listeners with each other.
+     */
     public enum CompareMethod {
 
         /**
@@ -40,12 +52,31 @@ public class ListenerList<T> implements Iterable<T> {
 
     }
 
+    /**
+     * The object, which is used for locking the list.
+     */
     private final Object lock = new Object();
 
+    /**
+     * The compare method, which is used by the list.
+     */
     private final CompareMethod compareMethod;
 
+    /**
+     * The listeners, which are currently contained by the list.
+     */
     private List<T> listeners;
 
+    /**
+     * Returns, whether an iterable contains a specific listener according to the used compare
+     * method, or not.
+     *
+     * @param iterable The iterable as an instance of the type {@link Iterable}. The iterable may
+     *                 not be null
+     * @param listener The listener, which should be checked, as an instance of the generic type
+     *                 {@link T}. The listener may not be null
+     * @return True, if the iterable contains the given listener, false otherwise
+     */
     private boolean contains(@NotNull final Iterable<? extends T> iterable,
                              @NotNull final T listener) {
         for (T t : iterable) {
@@ -57,6 +88,13 @@ public class ListenerList<T> implements Iterable<T> {
         return false;
     }
 
+    /**
+     * Returns, whether two listeners are equal according to the used compare method.
+     *
+     * @param listener1 The first listener as an instance of the generic type {@link T} or null
+     * @param listener2 The second listener as an instance of the generic type {@link T} or null
+     * @return True, if the given listeners are equal, false otherwise
+     */
     private boolean equals(@Nullable final T listener1, @Nullable final T listener2) {
         if (listener1 == null) {
             return listener2 == null;
@@ -66,32 +104,69 @@ public class ListenerList<T> implements Iterable<T> {
                             listener1 == listener2);
     }
 
+    /**
+     * Creates a new list, which is meant to be used for managing event listeners. In order to
+     * prevent duplicates, listeners are compared using the {@link Object#equals(Object)} method.
+     */
     public ListenerList() {
         this(CompareMethod.EQUALITY);
     }
 
+    /**
+     * Creates a new list, which is meant to be used for managing event listeners. In order to
+     * prevent duplicates, a specific compare method is used.
+     *
+     * @param compareMethod The method, which should be used for comparing listeners to each other,
+     *                      as a value of the enum {@link CompareMethod}. The compare method may not
+     *                      be null
+     */
     public ListenerList(@NotNull final CompareMethod compareMethod) {
         ensureNotNull(compareMethod, "The compare method may not be null");
         this.compareMethod = compareMethod;
         clear();
     }
 
+    /**
+     * Returns the compare method, which is used by the list.
+     *
+     * @return The compare method, which is used by the list, as a value of the enum {@link
+     * CompareMethod}. The compare method may not be null
+     */
+    @NotNull
     public final CompareMethod getCompareMethod() {
         return compareMethod;
     }
 
+    /**
+     * Returns, whether the list is empty, or not.
+     *
+     * @return True, if the list is empty, false otherwise
+     */
     public final boolean isEmpty() {
         synchronized (lock) {
             return listeners.isEmpty();
         }
     }
 
+    /**
+     * Returns the number of listeners, which are contained by the list.
+     *
+     * @return The number of listeners, which are contained by the list, as an {@link Integer} value
+     */
     public final int size() {
         synchronized (lock) {
             return listeners.size();
         }
     }
 
+    /**
+     * Adds a new listener to the list.
+     *
+     * @param listener The listener, which should be added, as an instance of the generic type
+     *                 {@link T}. The listener may not be null
+     * @return True, if the listener has been added, or false, if the listener was already contained
+     * by the list
+     */
     public final boolean add(@NotNull final T listener) {
         ensureNotNull(listener, "The listener may not be null");
 
@@ -107,6 +182,12 @@ public class ListenerList<T> implements Iterable<T> {
         }
     }
 
+    /**
+     * Adds all listeners, which can be iterated using a specific iterable, to the list.
+     *
+     * @param iterable The iterable as an instance of the type {@link Iterable}. The iterable may
+     *                 not be null
+     */
     public final void addAll(@NotNull final Iterable<? extends T> iterable) {
         ensureNotNull(iterable, "The iterable may not be null");
 
@@ -132,6 +213,14 @@ public class ListenerList<T> implements Iterable<T> {
         }
     }
 
+    /**
+     * Removes a specific listener from the list.
+     *
+     * @param listener The listener, which should be removed, as an instance of the generic type
+     *                 {@link T}. The listener may not be null
+     * @return True, if the listener has been removed, or false, if the listener is not contained by
+     * the list
+     */
     public final boolean remove(@NotNull final T listener) {
         ensureNotNull(listener, "The listener may not be null");
 
@@ -147,6 +236,12 @@ public class ListenerList<T> implements Iterable<T> {
         }
     }
 
+    /**
+     * Removes all listeners, which can be iterated using a specific iterable.
+     *
+     * @param iterable The iterable as an instance of the type {@link Iterable}. The iterable may
+     *                 not be null
+     */
     public final void removeAll(@NotNull final Iterable<? extends T> iterable) {
         ensureNotNull(iterable, "The iterable may not be null");
 
@@ -169,12 +264,23 @@ public class ListenerList<T> implements Iterable<T> {
         }
     }
 
+    /**
+     * Removes all listeners from the list.
+     */
     public final void clear() {
         synchronized (lock) {
             this.listeners = Collections.emptyList();
         }
     }
 
+    /**
+     * Returns a collection, which contains all listeners, which are currently contained by the
+     * list. The returned collection is a snapshot of the current state and is unmodifiable.
+     *
+     * @return A collection, which contains all listeners, which are currently contained by the
+     * list, as an instance of the type {@link Collection}. The collection may not be null
+     */
+    @NotNull
     public Collection<T> getAll() {
         synchronized (lock) {
             return isEmpty() ? Collections.emptyList() :
