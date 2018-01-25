@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 1.2.0 (Jan. 25th 2017)
+
+A feature release, which introduces the following changes:
+
+- Added the data structure `ListenerList`, which is meant to be used for managing listeners.
+
 ## Version 1.1.1 (Jul. 31th 2017)
 
 A minor release, which introduces the following changes:
