@@ -16,10 +16,7 @@ package de.mrapp.util.datastructure;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static de.mrapp.util.Condition.ensureNotNull;
 
@@ -49,7 +46,8 @@ public class ListenerList<T> implements Iterable<T> {
 
     private List<T> listeners;
 
-    private boolean contains(@NotNull final Iterable<? extends T> iterable, @NotNull final T listener) {
+    private boolean contains(@NotNull final Iterable<? extends T> iterable,
+                             @NotNull final T listener) {
         for (T t : iterable) {
             if (equals(t, listener)) {
                 return true;
@@ -64,7 +62,8 @@ public class ListenerList<T> implements Iterable<T> {
             return listener2 == null;
         } else
             return listener2 != null &&
-                    (compareMethod == CompareMethod.EQUALITY ? listener1.equals(listener2) : listener1 == listener2);
+                    (compareMethod == CompareMethod.EQUALITY ? listener1.equals(listener2) :
+                            listener1 == listener2);
     }
 
     public ListenerList() {
@@ -87,7 +86,7 @@ public class ListenerList<T> implements Iterable<T> {
         }
     }
 
-    public final int getSize() {
+    public final int size() {
         synchronized (lock) {
             return listeners.size();
         }
@@ -117,7 +116,8 @@ public class ListenerList<T> implements Iterable<T> {
             for (T listener : iterable) {
                 ensureNotNull(listener, "The listener may not be null");
 
-                if (newList == null ? !contains(this.listeners, listener) : !contains(newList, listener)) {
+                if (newList == null ? !contains(this.listeners, listener) :
+                        !contains(newList, listener)) {
                     if (newList == null) {
                         newList = new LinkedList<>(this.listeners);
                     }
@@ -172,6 +172,13 @@ public class ListenerList<T> implements Iterable<T> {
     public final void clear() {
         synchronized (lock) {
             this.listeners = Collections.emptyList();
+        }
+    }
+
+    public Collection<T> getAll() {
+        synchronized (lock) {
+            return isEmpty() ? Collections.emptyList() :
+                    Collections.unmodifiableCollection(new LinkedList<>(this.listeners));
         }
     }
 

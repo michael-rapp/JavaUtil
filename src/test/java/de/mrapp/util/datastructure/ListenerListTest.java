@@ -62,7 +62,7 @@ public class ListenerListTest {
         ListenerList<TestType> list = new ListenerList<>();
         assertEquals(CompareMethod.EQUALITY, list.getCompareMethod());
         assertTrue(list.isEmpty());
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ListenerListTest {
         ListenerList<TestType> list = new ListenerList<>(compareMethod);
         assertEquals(compareMethod, list.getCompareMethod());
         assertTrue(list.isEmpty());
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class ListenerListTest {
         ListenerList<TestType> list = new ListenerList<>();
         boolean added = list.add(listener);
         assertTrue(added);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
     }
 
@@ -93,11 +93,11 @@ public class ListenerListTest {
         list.add(listener);
         boolean added = list.add(listener2);
         assertFalse(added);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
         added = list.add(listener3);
         assertTrue(added);
-        assertEquals(2, list.getSize());
+        assertEquals(2, list.size());
         assertFalse(list.isEmpty());
     }
 
@@ -109,11 +109,11 @@ public class ListenerListTest {
         list.add(listener);
         boolean added = list.add(listener);
         assertFalse(added);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
         added = list.add(listener2);
         assertTrue(added);
-        assertEquals(2, list.getSize());
+        assertEquals(2, list.size());
         assertFalse(list.isEmpty());
     }
 
@@ -124,7 +124,7 @@ public class ListenerListTest {
         ListenerList<TestType> list = new ListenerList<>();
         list.add(listener1);
         list.add(listener2);
-        assertEquals(2, list.getSize());
+        assertEquals(2, list.size());
         Iterator<TestType> iterator = list.iterator();
         assertTrue(iterator.hasNext());
         assertEquals(listener1, iterator.next());
@@ -147,14 +147,14 @@ public class ListenerListTest {
         ListenerList<TestType> list = new ListenerList<>();
         list.add(listener1);
         list.add(listener2);
-        assertEquals(2, list.getSize());
+        assertEquals(2, list.size());
         assertFalse(list.isEmpty());
         Collection<TestType> collection = new LinkedList<>();
         collection.add(listener2);
         collection.add(listener3);
         collection.add(listener3);
         list.addAll(collection);
-        assertEquals(3, list.getSize());
+        assertEquals(3, list.size());
         assertFalse(list.isEmpty());
     }
 
@@ -173,15 +173,15 @@ public class ListenerListTest {
         TestType listener = new TestType(1);
         ListenerList<TestType> list = new ListenerList<>();
         list.add(listener);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
         boolean removed = list.remove(new TestType(2));
         assertFalse(removed);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
         removed = list.remove(new TestType(1));
         assertTrue(removed);
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
         assertTrue(list.isEmpty());
     }
 
@@ -190,15 +190,15 @@ public class ListenerListTest {
         TestType listener = new TestType(1);
         ListenerList<TestType> list = new ListenerList<>(CompareMethod.IDENTITY);
         list.add(listener);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
         boolean removed = list.remove(new TestType(1));
         assertFalse(removed);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
         removed = list.remove(listener);
         assertTrue(removed);
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
         assertTrue(list.isEmpty());
     }
 
@@ -216,7 +216,7 @@ public class ListenerListTest {
         list.add(listener1);
         list.add(listener2);
         list.add(listener3);
-        assertEquals(3, list.getSize());
+        assertEquals(3, list.size());
         assertFalse(list.isEmpty());
         Collection<TestType> collection = new LinkedList<>();
         collection.add(listener1);
@@ -225,7 +225,7 @@ public class ListenerListTest {
         collection.add(listener2);
         collection.add(new TestType(4));
         list.removeAll(collection);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
         assertFalse(list.isEmpty());
     }
 
@@ -239,11 +239,44 @@ public class ListenerListTest {
         ListenerList<TestType> list = new ListenerList<>();
         list.add(new TestType(1));
         list.add(new TestType(2));
-        assertEquals(2, list.getSize());
+        assertEquals(2, list.size());
         assertFalse(list.isEmpty());
         list.clear();
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
         assertTrue(list.isEmpty());
+    }
+
+    @Test
+    public void testGetAll() {
+        TestType listener1 = new TestType(1);
+        TestType listener2 = new TestType(2);
+        ListenerList<TestType> list = new ListenerList<>();
+        list.add(listener1);
+        list.add(listener2);
+        Collection<TestType> all = list.getAll();
+        assertEquals(list.size(), all.size());
+        Iterator<TestType> iterator = all.iterator();
+        assertEquals(listener1, iterator.next());
+        assertEquals(listener2, iterator.next());
+    }
+
+    @Test
+    public final void testGellAllReturnedCollectionDoesNotReflectChanges() {
+        ListenerList<TestType> list = new ListenerList<>();
+        list.add(new TestType(1));
+        list.add(new TestType(2));
+        Collection<TestType> all = list.getAll();
+        list.add(new TestType(3));
+        assertEquals(3, list.size());
+        assertEquals(2, all.size());
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testGetAllReturnedCollectionIsUnmodifiable() {
+        ListenerList<TestType> list = new ListenerList<>();
+        list.add(new TestType(1));
+        list.add(new TestType(2));
+        list.getAll().add(new TestType(3));
     }
 
     @Test
@@ -253,7 +286,7 @@ public class ListenerListTest {
         ListenerList<TestType> list = new ListenerList<>();
         list.add(listener1);
         list.add(listener2);
-        assertEquals(2, list.getSize());
+        assertEquals(2, list.size());
         Iterator<TestType> iterator = list.iterator();
         assertTrue(iterator.hasNext());
         assertEquals(listener1, iterator.next());
