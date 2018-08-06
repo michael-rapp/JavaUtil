@@ -11,22 +11,21 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package de.mrapp.util;
+package de.mrapp.util
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert.assertEquals
+import kotlin.test.Test
 
 /**
- * Tests the functionality of the class {@link ClassUtil}.
+ * Tests the functionality of the class [ClassUtil].
  *
  * @author Michael Rapp
  */
-public class ClassUtilTest {
+class ClassUtilTest {
 
     @Test
-    public final void testGetTruncatedName() {
-        assertEquals("j.l.Object", ClassUtil.getTruncatedName(Object.class));
+    fun testGetTruncatedName() {
+        assertEquals("j.l.Object", ClassUtil.getTruncatedName(Any::class.java))
     }
 
 }
