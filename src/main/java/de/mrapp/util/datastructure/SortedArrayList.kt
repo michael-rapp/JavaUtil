@@ -18,7 +18,8 @@ import java.util.*
 /**
  * An extension of the class [ArrayList] that automatically keeps its items in a sorted order,
  * whenever new items are added. Such a list does not allow to add items at specific indices.
- * Therefore an [UnsupportedOperationException] is thrown by the [.add(int, Object)] and [.addAll(int, Collection)] methods.
+ * Therefore an [UnsupportedOperationException] is thrown by the [SortedArrayList.add] and
+ * [SortedArrayList.addAll] methods that allow to specify an index.
  *
  * @param T The type of the items, which are contained by the list or null, if the item's
  * implementation of the interface [Comparable] is used instead
