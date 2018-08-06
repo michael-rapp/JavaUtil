@@ -6,9 +6,7 @@
 
 - The class `Condition` provides methods, which allow to ensure that variables or objects fulfill certain conditions by throwing exceptions, if conditions are violated, e.g. when an object is null.
 - The class `ClassUtil` provides methods, which allow to handle class names.
-- The class `FileUtil` provides methods, which allow to handle files.
 - The class `StreamUtil` provides methods, which allow to handle streams.
-- The class `ArrayUtil` provides methods, which allow to handle arrays.
 - The class `Pair` is a generic data structure, which eases to pass around a tuple of two objects.
 - The class `Triple` is a generic data structure, which eases to pass around a triple of three objects.
 - The class `SortedArrayList` is an extension of the class `java.util.ArrayList`, which keeps its items sorted whenever updated.
