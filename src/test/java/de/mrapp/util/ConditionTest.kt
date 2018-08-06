@@ -237,6 +237,88 @@ class ConditionTest : AbstractFileTest() {
     }
 
     @Test
+    fun testEnsureHasTextThrowsException() {
+        val message = "message"
+
+        try {
+            Condition.ensureHasText(null, message)
+            fail()
+        } catch (e: IllegalArgumentException) {
+            assertEquals(message, e.message)
+        }
+    }
+
+    @Test
+    fun testEnsureHasTextThrowsException2() {
+        val message = "message"
+
+        try {
+            Condition.ensureHasText("", message)
+            fail()
+        } catch (e: IllegalArgumentException) {
+            assertEquals(message, e.message)
+        }
+    }
+
+    @Test
+    fun testEnsureHasTextThrowsException3() {
+        val message = "message"
+
+        try {
+            Condition.ensureHasText("  ", message)
+            fail()
+        } catch (e: IllegalArgumentException) {
+            assertEquals(message, e.message)
+        }
+    }
+
+    @Test
+    fun testEnsureHasTextThrowsNoException() {
+        Condition.ensureHasText("text", "message")
+    }
+
+    @Test
+    fun testEnsureHasTextWithClassParameterThrowsException() {
+        val message = "message"
+
+        try {
+            Condition.ensureHasText(null, message, NullPointerException::class.java)
+            fail()
+        } catch (e: NullPointerException) {
+            assertEquals(message, e.message)
+        }
+    }
+
+    @Test
+    fun testEnsureHasTextWithClassParameterThrowsException2() {
+        val message = "message"
+
+        try {
+            Condition.ensureHasText("", message, NullPointerException::class.java)
+            fail()
+        } catch (e: NullPointerException) {
+            assertEquals(message, e.message)
+        }
+    }
+
+    @Test
+    fun testEnsureHasTextWithClassParameterThrowsException3() {
+        val message = "message"
+
+        try {
+            Condition.ensureHasText("   ", message, NullPointerException::class.java)
+            fail()
+        } catch (e: NullPointerException) {
+            assertEquals(message, e.message)
+        }
+    }
+
+    @Test
+    fun testEnsureHasTextWithClassParameterThrowsNoException() {
+        Condition.ensureHasText("text", "message", NullPointerException::class.java)
+    }
+
+    @Test
     fun testEnsureAtLeastWithShortParameterThrowsException() {
         val message = "message"
 

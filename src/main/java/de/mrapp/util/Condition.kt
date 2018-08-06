@@ -134,7 +134,7 @@ object Condition {
      * Ensures that a specific [text] is neither null, nor empty. Otherwise an
      * [IllegalArgumentException] using a specific [exceptionMessage] is thrown.
      */
-    fun ensureNotEmpty(text: CharSequence, exceptionMessage: String?) {
+    fun ensureNotEmpty(text: CharSequence?, exceptionMessage: String?) {
         ensureNotEmpty(text, exceptionMessage, IllegalArgumentException::class.java)
     }
 
@@ -145,6 +145,26 @@ object Condition {
     fun ensureNotEmpty(text: CharSequence?, exceptionMessage: String?,
                        exceptionClass: Class<out RuntimeException>) {
         if (text == null || text.isEmpty()) {
+            throwException(exceptionMessage, exceptionClass)
+        }
+    }
+
+    /**
+     * Ensures that a specific [text] is neither null, nor empty, nor does contain only whitespace.
+     * Otherwise an [IllegalArgumentException] using a specific [exceptionMessage] is thrown.
+     */
+    fun ensureHasText(text: CharSequence?, exceptionMessage: String?) {
+        ensureHasText(text, exceptionMessage, IllegalArgumentException::class.java)
+    }
+
+    /**
+     * Ensures that a specific [text] is neither null, nor empty, nor does contain only whitespace.
+     * Otherwise a runtime exception of a specific [exceptionClass] and using a specific
+     * [exceptionMessage] is thrown.
+     */
+    fun ensureHasText(text: CharSequence?, exceptionMessage: String?,
+                      exceptionClass: Class<out RuntimeException>) {
+        if (text == null || text.isEmpty() || text.matches("\\s+".toRegex())) {
             throwException(exceptionMessage, exceptionClass)
         }
     }
