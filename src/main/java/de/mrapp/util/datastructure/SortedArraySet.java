@@ -13,19 +13,18 @@
  */
 package de.mrapp.util.datastructure;
 
+import de.mrapp.util.Condition;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-
-import static de.mrapp.util.Condition.*;
 
 /**
  * A set, whose items are sorted based on a specific {@link Comparator} or according to their
  * implementation of the interface {@link Comparable}. In contrast to a {@link TreeSet}, two items
  * are considered as duplicates, if their hash codes are equal, instead of evaluating the result of
  * the {@link Comparator} or {@link Comparable#compareTo(Object)} method.
- *
+ * <p>
  * The set internally uses a {@link SortedArrayList} to keep the items in a sorted order whenever
  * updated. In addition the hash codes of all items, which are contained by the set, are maintained
  * in a {@link HashSet} to prevent duplicates from being added to the set.
@@ -128,13 +127,15 @@ public class SortedArraySet<T> implements SortedSet<T> {
     @NotNull
     @Override
     public SortedSet<T> subSet(@NotNull final T fromElement, @NotNull final T toElement) {
-        ensureNotNull(fromElement, "The fromElement may not be null");
-        ensureNotNull(toElement, "The toElement may not be null");
+        Condition.INSTANCE.ensureNotNull(fromElement, "The fromElement may not be null");
+        Condition.INSTANCE.ensureNotNull(toElement, "The toElement may not be null");
         int start = sortedArrayList.indexOf(fromElement);
-        ensureNotEqual(start, -1, "fromElement not contained by set", NoSuchElementException.class);
+        Condition.INSTANCE.ensureNotEqual(start, -1, "fromElement not contained by set",
+                NoSuchElementException.class);
         int end = sortedArrayList.indexOf(toElement);
-        ensureNotEqual(end, -1, "toElement not contained by set", NoSuchElementException.class);
-        ensureFalse(start > end, "fromElement greater than toElement");
+        Condition.INSTANCE.ensureNotEqual(end, -1, "toElement not contained by set",
+                NoSuchElementException.class);
+        Condition.INSTANCE.ensureFalse(start > end, "fromElement greater than toElement");
         SortedSet<T> subSet = new SortedArraySet<>((end - start) + 1);
 
         for (int i = start; i <= end; i++) {
@@ -147,9 +148,10 @@ public class SortedArraySet<T> implements SortedSet<T> {
     @NotNull
     @Override
     public SortedSet<T> headSet(@NotNull final T toElement) {
-        ensureNotNull(toElement, "The toElement may not be null");
+        Condition.INSTANCE.ensureNotNull(toElement, "The toElement may not be null");
         int end = sortedArrayList.indexOf(toElement);
-        ensureNotEqual(end, -1, "toElement not contained by set", NoSuchElementException.class);
+        Condition.INSTANCE.ensureNotEqual(end, -1, "toElement not contained by set",
+                NoSuchElementException.class);
         SortedSet<T> headSet = new SortedArraySet<>(end + 1);
 
         for (int i = 0; i <= end; i++) {
@@ -162,9 +164,10 @@ public class SortedArraySet<T> implements SortedSet<T> {
     @NotNull
     @Override
     public SortedSet<T> tailSet(@NotNull final T fromElement) {
-        ensureNotNull(fromElement, "The fromElement may not be null");
+        Condition.INSTANCE.ensureNotNull(fromElement, "The fromElement may not be null");
         int start = sortedArrayList.indexOf(fromElement);
-        ensureNotEqual(start, -1, "fromElement not contained by set", NoSuchElementException.class);
+        Condition.INSTANCE.ensureNotEqual(start, -1, "fromElement not contained by set",
+                NoSuchElementException.class);
         SortedSet<T> tailSet = new SortedArraySet<>(size() - start);
 
         for (int i = start; i < size(); i++) {
@@ -177,14 +180,14 @@ public class SortedArraySet<T> implements SortedSet<T> {
     @NotNull
     @Override
     public T first() {
-        ensureFalse(isEmpty(), "Set is empty", NoSuchElementException.class);
+        Condition.INSTANCE.ensureFalse(isEmpty(), "Set is empty", NoSuchElementException.class);
         return sortedArrayList.get(0);
     }
 
     @NotNull
     @Override
     public T last() {
-        ensureFalse(isEmpty(), "Set is empty", NoSuchElementException.class);
+        Condition.INSTANCE.ensureFalse(isEmpty(), "Set is empty", NoSuchElementException.class);
         return sortedArrayList.get(sortedArrayList.size() - 1);
     }
 
@@ -200,7 +203,7 @@ public class SortedArraySet<T> implements SortedSet<T> {
 
     @Override
     public boolean contains(@NotNull final Object item) {
-        ensureNotNull(item, "The item may not be null");
+        Condition.INSTANCE.ensureNotNull(item, "The item may not be null");
         return hashCodes.contains(item.hashCode());
     }
 
@@ -220,13 +223,13 @@ public class SortedArraySet<T> implements SortedSet<T> {
     @NotNull
     @Override
     public <T1> T1[] toArray(@NotNull final T1[] array) {
-        ensureNotNull(array, "The array may not be null");
+        Condition.INSTANCE.ensureNotNull(array, "The array may not be null");
         return sortedArrayList.toArray(array);
     }
 
     @Override
     public boolean add(@NotNull final T item) {
-        ensureNotNull(item, "The item may not be null");
+        Condition.INSTANCE.ensureNotNull(item, "The item may not be null");
         int hashCode = item.hashCode();
 
         if (!hashCodes.contains(hashCode)) {
@@ -240,7 +243,7 @@ public class SortedArraySet<T> implements SortedSet<T> {
 
     @Override
     public boolean remove(@NotNull final Object item) {
-        ensureNotNull(item, "The item may not be null");
+        Condition.INSTANCE.ensureNotNull(item, "The item may not be null");
         int hashCode = item.hashCode();
 
         if (hashCodes.remove(hashCode)) {
@@ -253,13 +256,13 @@ public class SortedArraySet<T> implements SortedSet<T> {
 
     @Override
     public boolean containsAll(@NotNull final Collection<?> items) {
-        ensureNotNull(items, "The collection may not be null");
+        Condition.INSTANCE.ensureNotNull(items, "The collection may not be null");
         return items.stream().map(this::contains).reduce(true, (a, b) -> a && b);
     }
 
     @Override
     public boolean addAll(@NotNull final Collection<? extends T> items) {
-        ensureNotNull(items, "The collection may not be null");
+        Condition.INSTANCE.ensureNotNull(items, "The collection may not be null");
 
         if (!items.isEmpty()) {
             return items.stream().map(this::add).reduce(true, (a, b) -> a && b);
@@ -270,7 +273,7 @@ public class SortedArraySet<T> implements SortedSet<T> {
 
     @Override
     public boolean retainAll(@NotNull final Collection<?> items) {
-        ensureNotNull(items, "The collection may not be null");
+        Condition.INSTANCE.ensureNotNull(items, "The collection may not be null");
 
         if (!items.isEmpty()) {
             boolean result = false;
@@ -294,7 +297,7 @@ public class SortedArraySet<T> implements SortedSet<T> {
 
     @Override
     public boolean removeAll(@NotNull final Collection<?> items) {
-        ensureNotNull(items, "The collection may not be null");
+        Condition.INSTANCE.ensureNotNull(items, "The collection may not be null");
 
         if (!items.isEmpty()) {
             return items.stream().map(this::remove).reduce(true, (a, b) -> a && b);

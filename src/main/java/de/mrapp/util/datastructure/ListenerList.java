@@ -13,12 +13,11 @@
  */
 package de.mrapp.util.datastructure;
 
+import de.mrapp.util.Condition;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-
-import static de.mrapp.util.Condition.ensureNotNull;
 
 /**
  * A list, which is meant to be used for managing event listeners. The list ensures, that no
@@ -121,7 +120,7 @@ public class ListenerList<T> implements Iterable<T> {
      *                      be null
      */
     public ListenerList(@NotNull final CompareMethod compareMethod) {
-        ensureNotNull(compareMethod, "The compare method may not be null");
+        Condition.INSTANCE.ensureNotNull(compareMethod, "The compare method may not be null");
         this.compareMethod = compareMethod;
         clear();
     }
@@ -168,7 +167,7 @@ public class ListenerList<T> implements Iterable<T> {
      * by the list
      */
     public final boolean add(@NotNull final T listener) {
-        ensureNotNull(listener, "The listener may not be null");
+        Condition.INSTANCE.ensureNotNull(listener, "The listener may not be null");
 
         synchronized (lock) {
             if (!contains(this.listeners, listener)) {
@@ -189,13 +188,13 @@ public class ListenerList<T> implements Iterable<T> {
      *                 not be null
      */
     public final void addAll(@NotNull final Iterable<? extends T> iterable) {
-        ensureNotNull(iterable, "The iterable may not be null");
+        Condition.INSTANCE.ensureNotNull(iterable, "The iterable may not be null");
 
         synchronized (lock) {
             List<T> newList = null;
 
             for (T listener : iterable) {
-                ensureNotNull(listener, "The listener may not be null");
+                Condition.INSTANCE.ensureNotNull(listener, "The listener may not be null");
 
                 if (newList == null ? !contains(this.listeners, listener) :
                         !contains(newList, listener)) {
@@ -222,7 +221,7 @@ public class ListenerList<T> implements Iterable<T> {
      * the list
      */
     public final boolean remove(@NotNull final T listener) {
-        ensureNotNull(listener, "The listener may not be null");
+        Condition.INSTANCE.ensureNotNull(listener, "The listener may not be null");
 
         synchronized (lock) {
             if (contains(this.listeners, listener)) {
@@ -243,7 +242,7 @@ public class ListenerList<T> implements Iterable<T> {
      *                 not be null
      */
     public final void removeAll(@NotNull final Iterable<? extends T> iterable) {
-        ensureNotNull(iterable, "The iterable may not be null");
+        Condition.INSTANCE.ensureNotNull(iterable, "The iterable may not be null");
 
         synchronized (lock) {
             List<T> newList = null;
