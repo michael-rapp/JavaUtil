@@ -11,41 +11,30 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package de.mrapp.util;
+package de.mrapp.util
 
-import org.jetbrains.annotations.Nullable;
-
-import java.io.Closeable;
-import java.io.IOException;
+import java.io.Closeable
+import java.io.IOException
 
 /**
- * An utility class, which provides static methods, which allow to handle streams.
+ * An utility class, which provides methods that allow to handle streams.
  *
  * @author Michael Rapp
  * @since 1.0.0
  */
-public final class StreamUtil {
+object StreamUtil {
 
     /**
-     * Creates a new utility class, which provides static methods, wihch allow to handle streams.
+     * Gracefully closes a specific [stream].
      */
-    private StreamUtil() {
-
-    }
-
-    /**
-     * Gracefully closes a specific stream.
-     *
-     * @param stream The stream, which should be closed, as an instance of the type {@link
-     *               Closeable}
-     */
-    public static void close(@Nullable final Closeable stream) {
+    fun close(stream: Closeable?) {
         if (stream != null) {
             try {
-                stream.close();
-            } catch (IOException e) {
+                stream.close()
+            } catch (e: IOException) {
                 // No need to handle
             }
+
         }
     }
 

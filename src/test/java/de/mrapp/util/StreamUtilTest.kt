@@ -11,28 +11,27 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package de.mrapp.util;
+package de.mrapp.util
 
-import org.junit.Test;
-
-import java.io.Closeable;
-import java.io.IOException;
-
-import static org.mockito.Mockito.*;
+import org.mockito.Mockito.*
+import java.io.Closeable
+import java.io.IOException
+import kotlin.test.Test
 
 /**
- * Tests the functionality of the class {@link StreamUtil}.
+ * Tests the functionality of the class [StreamUtil].
  *
  * @author Michael Rapp
  */
-public class StreamUtilTest {
+class StreamUtilTest {
 
     @Test
-    public final void testClose() throws IOException {
-        StreamUtil.close(null);
-        Closeable closeable = mock(Closeable.class);
-        StreamUtil.close(closeable);
-        verify(closeable, times(1)).close();
+    @Throws(IOException::class)
+    fun testClose() {
+        StreamUtil.close(null)
+        val closeable = mock(Closeable::class.java)
+        StreamUtil.close(closeable)
+        verify(closeable, times(1)).close()
     }
 
 }
