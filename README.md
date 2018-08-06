@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X75YSLEJV3DWE)
 
-"JavaUtil" is a library, which provides various utility classes for use in Java development. The library currently provides the following features:
+"JavaUtil" is a library that provides various utility classes for use in Java development. Despite being meant to be used in Java projects, the library itself is implemented using the Kotlin programing language since version 2.0.0. The library currently provides the following features:
 
 - The class `Condition` provides methods, which allow to ensure that variables or objects fulfill certain conditions by throwing exceptions, if conditions are violated, e.g. when an object is null.
 - The class `ClassUtil` provides methods, which allow to handle class names.
