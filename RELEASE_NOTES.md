@@ -1,5 +1,13 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.0.0 (Aug. 6th 2018)
+
+A major release, which introduces the following changes:
+
+- Migrated the projected to use the Kotlin programming language instead of Java.
+- Added `ensureHasText`-methods to the class `Condition`.
+- Removed the classes `ArrayUtil` and `FileUtil`.
+
 ## Version 1.2.0 (Jan. 25th 2017)
 
 A feature release, which introduces the following changes:
