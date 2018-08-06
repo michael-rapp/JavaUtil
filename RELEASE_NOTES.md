@@ -4,7 +4,7 @@
 
 A major release, which introduces the following changes:
 
-- Migrated the projected to use the Kotlin programming language instead of Java.
+- Migrated the project to use the Kotlin programming language instead of Java.
 - Added `ensureHasText`-methods to the class `Condition`.
 - Removed the classes `ArrayUtil` and `FileUtil`.
 
