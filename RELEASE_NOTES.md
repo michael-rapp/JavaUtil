@@ -1,6 +1,6 @@
 # JavaUtil - RELEASE NOTES
 
-## Version 2.0.0 (Aug. 6th 2018)
+## Version 2.0.0 (Aug. 7th 2018)
 
 A major release, which introduces the following changes:
 
