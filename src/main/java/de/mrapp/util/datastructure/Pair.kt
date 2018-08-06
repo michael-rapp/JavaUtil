@@ -32,8 +32,8 @@ data class Pair<out F, out S>(val first: F?, val second: S?) {
         /**
          * Creates a new pair consisting of two objects [first] and [second].
          *
-         * @param F    The type of the first object
-         * @param S    The type of the second object
+         * @param F The type of the first object
+         * @param S The type of the second object
          * @return The pair, which has been created
          */
         fun <F, S> create(first: F, second: S): Pair<F, S> {
