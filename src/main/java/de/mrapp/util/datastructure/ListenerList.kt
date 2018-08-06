@@ -27,6 +27,8 @@ import java.util.*
  * This is list is neither serializable, nor does it override the [Object.equals] or
  * [Object.hashCode] method.
  *
+ * @param T The type of the listeners that are contained by the list
+ * @property compareMethod The method that is used to compare listeners with each other
  * @author Michael Rapp
  * @since 1.2.0
  */
