@@ -33,7 +33,7 @@ import kotlin.collections.HashSet
  * @author Michael Rapp
  * @since 1.1.0
  */
-class SortedArraySet<T>(initialCapacity: Int,
+open class SortedArraySet<T>(initialCapacity: Int,
                         comparator: Comparator<in T>?) : SortedSet<T> {
 
     private val sortedArrayList = SortedArrayList(initialCapacity, comparator)

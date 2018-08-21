@@ -28,7 +28,7 @@ import java.util.*
  * @author Michael Rapp
  * @since 1.1.0
  */
-class SortedArrayList<T>(private val initialCapacity: Int,
+open class SortedArrayList<T>(private val initialCapacity: Int,
                          private val comparator: Comparator<in T>?) :
         ArrayList<T>(initialCapacity) {
 
