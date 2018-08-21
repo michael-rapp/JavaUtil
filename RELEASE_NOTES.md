@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.0.1 (Aug. 21th 2018)
+
+A minor release, which introduces the following changes:
+
+- Added `open` modifiers to the classes `SortedArrayList` and `SortedArraySet`. 
+
 ## Version 2.0.0 (Aug. 7th 2018)
 
 A major release, which introduces the following changes:
