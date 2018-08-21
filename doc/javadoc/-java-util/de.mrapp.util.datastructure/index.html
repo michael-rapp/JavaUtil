@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>de.mrapp.util.datastructure - JavaUtil</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">JavaUtil</a>&nbsp;/&nbsp;<a href="./index.html">de.mrapp.util.datastructure</a><br/>
+<br/>
+<h2>Package de.mrapp.util.datastructure</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-listener-list/index.html">ListenerList</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ListenerList</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="-listener-list/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>A list that is meant to be used for managing event listeners. The list ensures, that no
+duplicates or null elements can be added. For comparing listeners either the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html">Object.equals</a>
+method or the identity operator (==) can be used. Furthermore, this class is thread-safe and
+no <a href="http://docs.oracle.com/javase/6/docs/api/java/util/ConcurrentModificationException.html">ConcurrentModificationException</a>s are thrown when adding or removing listeners while
+iterating the list.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-pair/index.html">Pair</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">F</span><span class="symbol">, </span><span class="keyword">out</span>&nbsp;<span class="identifier">S</span><span class="symbol">&gt;</span></code>
+<p>A data structure that eases to pass around a pair of two objects. This object provides a
+sensible implementation of equals(), returning true if equals() is true on each of the contained
+objects.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-sorted-array-list/index.html">SortedArrayList</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SortedArrayList</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/ArrayList.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="-sorted-array-list/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>An extension of the class <a href="http://docs.oracle.com/javase/6/docs/api/java/util/ArrayList.html">ArrayList</a> that automatically keeps its items in a sorted order,
+whenever new items are added. Such a list does not allow to add items at specific indices.
+Therefore an <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unsupported-operation-exception/index.html">UnsupportedOperationException</a> is thrown by the <a href="-sorted-array-list/add.html">SortedArrayList.add</a> and
+<a href="-sorted-array-list/add-all.html">SortedArrayList.addAll</a> methods that allow to specify an index.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-sorted-array-set/index.html">SortedArraySet</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">SortedArraySet</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/SortedSet.html"><span class="identifier">SortedSet</span></a><span class="symbol">&lt;</span><a href="-sorted-array-set/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>A set, whose items are sorted based on a specific <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html">Comparator</a> or according to their
+implementation of the interface <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparable/index.html">Comparable</a>. In contrast to a <a href="http://docs.oracle.com/javase/6/docs/api/java/util/TreeSet.html">TreeSet</a>, two items are
+considered as duplicates, if their hash codes are equal, instead of evaluating the result of
+the <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html">Comparator</a> or <a href="#">Comparable#compareToObject</a> method.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-triple/index.html">Triple</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Triple</span><span class="symbol">&lt;</span><span class="identifier">F</span><span class="symbol">, </span><span class="identifier">S</span><span class="symbol">, </span><span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>A data structure that eases to pass around a triple of three objects. This object provides a
+sensible implementation of equals(), returning true if equals() is true on each of the contained
+objects.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ListenerList.<init> - JavaUtil</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">JavaUtil</a>&nbsp;/&nbsp;<a href="../index.html">de.mrapp.util.datastructure</a>&nbsp;/&nbsp;<a href="index.html">ListenerList</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="de.mrapp.util.datastructure.ListenerList$&lt;init&gt;()"></a>
+<code><span class="identifier">ListenerList</span><span class="symbol">(</span><span class="symbol">)</span></code><a name="de.mrapp.util.datastructure.ListenerList$&lt;init&gt;(de.mrapp.util.datastructure.ListenerList.CompareMethod)"></a>
+<code><span class="identifier">ListenerList</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.datastructure.ListenerList$<init>(de.mrapp.util.datastructure.ListenerList.CompareMethod)/compareMethod">compareMethod</span><span class="symbol">:</span>&nbsp;<a href="-compare-method/index.html"><span class="identifier">CompareMethod</span></a><span class="symbol">)</span></code>
+<p>A list that is meant to be used for managing event listeners. The list ensures, that no
+duplicates or null elements can be added. For comparing listeners either the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html">Object.equals</a>
+method or the identity operator (==) can be used. Furthermore, this class is thread-safe and
+no <a href="http://docs.oracle.com/javase/6/docs/api/java/util/ConcurrentModificationException.html">ConcurrentModificationException</a>s are thrown when adding or removing listeners while
+iterating the list.</p>
+<p>This is list is neither serializable, nor does it override the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html">Object.equals</a> or
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/hash-code.html">Object.hashCode</a> method.</p>
+<h3>Parameters</h3>
+<p><a name="T"></a>
+<code>T</code> - The type of the listeners that are contained by the list</p>
+</BODY>
+</HTML>
