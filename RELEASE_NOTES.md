@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.0.2 (Jan. 20th 2019)
+
+A minor release, which introduces the following changes:
+
+- Updated Kotlin programming language to version 1.3.11.
+
 ## Version 2.0.1 (Aug. 21th 2018)
 
 A minor release, which introduces the following changes:
