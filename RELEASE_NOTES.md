@@ -7,6 +7,7 @@ A feature release, which introduces the following changes:
 - The class `SortedArraySet` now implements the interface `NavigableSet`, but only the `pollFirst`- and `pollLast`-methods are implemented yet.
 - The class `SortedArrayList` now uses a binary search to implement the `indexOf`-, `lastIndexOf`-, `contains`- and `remove`-methods more efficiently.
 - The `Comparator` that is used by the class `SortedArrayList` can now be replaced by invoking the `sort`-method.
+- The classes `Pair` and `Triple` now implement the interface `Serializable`.
 
 ## Version 2.0.2 (Jan. 20th 2019)
 
