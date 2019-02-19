@@ -4,7 +4,8 @@
 
 A feature release, which introduces the following changes:
 
-- The class `SortedArrayList` now uses a binary search to implement the `contains`- and `remove`-method more efficiently.
+- The class `SortedArrayList` now uses a binary search to implement the `indexOf`-, `lastIndexOf`-, `contains`- and `remove`-method more efficiently.
+- The `Comparator` that is used by the class `SortedArrayList` can now be replaced by invoking the `sort`-method.
 
 ## Version 2.0.2 (Jan. 20th 2019)
 
