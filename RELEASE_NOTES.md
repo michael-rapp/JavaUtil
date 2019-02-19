@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.1.0 (Feb. 19th 2019)
+
+A feature release, which introduces the following changes:
+
+- The class `SortedArrayList` now uses a binary search to implement the `contains`- and `remove`-method more efficiently.
+
 ## Version 2.0.2 (Jan. 20th 2019)
 
 A minor release, which introduces the following changes:
