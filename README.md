@@ -25,7 +25,7 @@ Alternatively, the library can be added to your project as a Gradle dependency b
 
 ```groovy
 dependencies {
-    compile 'com.github.michael-rapp:java-util:2.0.2'
+    compile 'com.github.michael-rapp:java-util:2.1.0'
 }
 ```
 
