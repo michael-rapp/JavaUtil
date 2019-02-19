@@ -29,7 +29,7 @@ import java.util.*
  * @since 1.1.0
  */
 open class SortedArrayList<T>(private val initialCapacity: Int,
-                              private val comparator: Comparator<in T>?) :
+                              private var comparator: Comparator<in T>?) :
         ArrayList<T>(initialCapacity) {
 
     constructor() : this(0, null)
@@ -76,19 +76,41 @@ open class SortedArrayList<T>(private val initialCapacity: Int,
         throw UnsupportedOperationException()
     }
 
-    override fun contains(element: T): Boolean {
-        return Collections.binarySearch(this, element, comparator) >= 0
+    override fun indexOf(element: T): Int {
+        val index = lastIndexOf(element)
+
+        if (index != -1) {
+            for (i in index - 1 downTo 0) {
+                if (get(i) != element) {
+                    return i + 1
+                }
+            }
+        }
+
+        return index
     }
 
-    override fun remove(element: T): Boolean {
+    override fun lastIndexOf(element: T): Int {
         val index = Collections.binarySearch(this, element, comparator)
+        return if (index >= 0) index else -1
+    }
 
-        if (index >= -1) {
+    override fun contains(element: T) = lastIndexOf(element) != -1
+
+    override fun remove(element: T): Boolean {
+        val index = indexOf(element)
+
+        if (index != -1) {
             removeAt(index)
             return true
         }
 
         return false
+    }
+
+    override fun sort(c: Comparator<in T>?) {
+        this.comparator = c
+        super.sort(c)
     }
 
 }

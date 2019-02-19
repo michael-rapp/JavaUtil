@@ -144,6 +144,26 @@ class SortedArrayListTest {
     }
 
     @Test
+    fun testIndexOf() {
+        val sortedArrayList = SortedArrayList<Int>(Arrays.asList(4, 1, 2, 3, 2))
+        assertEquals(0, sortedArrayList.indexOf(1))
+        assertEquals(1, sortedArrayList.indexOf(2))
+        assertEquals(3, sortedArrayList.indexOf(3))
+        assertEquals(4, sortedArrayList.indexOf(4))
+        assertEquals(-1, sortedArrayList.indexOf(5))
+    }
+
+    @Test
+    fun testLastIndexOf() {
+        val sortedArrayList = SortedArrayList<Int>(Arrays.asList(4, 1, 2, 3, 2))
+        assertEquals(0, sortedArrayList.lastIndexOf(1))
+        assertEquals(2, sortedArrayList.lastIndexOf(2))
+        assertEquals(3, sortedArrayList.lastIndexOf(3))
+        assertEquals(4, sortedArrayList.lastIndexOf(4))
+        assertEquals(-1, sortedArrayList.lastIndexOf(5))
+    }
+
+    @Test
     fun testContains() {
         val sortedArrayList = SortedArrayList<Int>(Arrays.asList(4, 1, 2, 3, 2))
         assertTrue(sortedArrayList.contains(1))
@@ -176,6 +196,21 @@ class SortedArrayListTest {
         assertEquals(iterator.next(), 2)
         assertEquals(iterator.next(), 3)
         assertEquals(iterator.next(), 4)
+    }
+
+    @Test
+    fun testSort() {
+        val sortedArrayList = SortedArrayList<Int>(Arrays.asList(5, 1, 2, 3, 2))
+        val comparator = Comparator<Int> { x, y -> x.compareTo(y) }.reversed()
+        sortedArrayList.sortWith(comparator)
+        sortedArrayList.add(4)
+        val iterator = sortedArrayList.iterator()
+        assertEquals(iterator.next(), 5)
+        assertEquals(iterator.next(), 4)
+        assertEquals(iterator.next(), 3)
+        assertEquals(iterator.next(), 2)
+        assertEquals(iterator.next(), 2)
+        assertEquals(iterator.next(), 1)
     }
 
 }
