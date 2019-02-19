@@ -13,6 +13,8 @@
  */
 package de.mrapp.util.datastructure
 
+import java.io.Serializable
+
 /**
  * A data structure that eases to pass around a pair of two objects. This object provides a
  * sensible implementation of equals(), returning true if equals() is true on each of the contained
@@ -25,7 +27,7 @@ package de.mrapp.util.datastructure
  * @author Michael Rapp
  * @since 1.0.0
  */
-data class Pair<out F, out S>(val first: F?, val second: S?) {
+data class Pair<out F, out S>(val first: F?, val second: S?) : Serializable {
 
     companion object {
 
