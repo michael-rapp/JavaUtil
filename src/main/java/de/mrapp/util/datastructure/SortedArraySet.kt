@@ -14,10 +14,9 @@
 package de.mrapp.util.datastructure
 
 import de.mrapp.util.Condition
-import de.mrapp.util.Condition.ensureFalse
-import de.mrapp.util.Condition.ensureNotEqual
-import de.mrapp.util.Condition.ensureNotNull
+import java.io.Serializable
 import java.util.*
+import kotlin.NoSuchElementException
 import kotlin.collections.HashSet
 
 /**
@@ -33,8 +32,8 @@ import kotlin.collections.HashSet
  * @author Michael Rapp
  * @since 1.1.0
  */
-open class SortedArraySet<T>(initialCapacity: Int,
-                        comparator: Comparator<in T>?) : SortedSet<T> {
+open class SortedArraySet<T>(initialCapacity: Int, comparator: Comparator<in T>?) : SortedSet<T>,
+        NavigableSet<T>, Serializable {
 
     private val sortedArrayList = SortedArrayList(initialCapacity, comparator)
 
@@ -56,49 +55,6 @@ open class SortedArraySet<T>(initialCapacity: Int,
 
     override fun comparator(): Comparator<in T>? = sortedArrayList.comparator()
 
-    override fun subSet(fromElement: T, toElement: T): SortedSet<T> {
-        val start = sortedArrayList.indexOf(fromElement)
-        ensureNotEqual(start, -1, "fromElement not contained by set",
-                NoSuchElementException::class.java)
-        val end = sortedArrayList.indexOf(toElement)
-        ensureNotEqual(end, -1, "toElement not contained by set",
-                NoSuchElementException::class.java)
-        ensureFalse(start > end, "fromElement greater than toElement")
-        val subSet = SortedArraySet<T>(end - start + 1)
-
-        for (i in start..end) {
-            subSet.add(sortedArrayList[i])
-        }
-
-        return subSet
-    }
-
-    override fun headSet(toElement: T): SortedSet<T> {
-        val end = sortedArrayList.indexOf(toElement)
-        ensureNotEqual(end, -1, "toElement not contained by set",
-                NoSuchElementException::class.java)
-        val headSet = SortedArraySet<T>(end + 1)
-
-        for (i in 0..end) {
-            headSet.add(sortedArrayList[i])
-        }
-
-        return headSet
-    }
-
-    override fun tailSet(fromElement: T): SortedSet<T> {
-        val start = sortedArrayList.indexOf(fromElement)
-        ensureNotEqual(start, -1, "fromElement not contained by set",
-                NoSuchElementException::class.java)
-        val tailSet = SortedArraySet<T>(size - start)
-
-        for (i in start until size) {
-            tailSet.add(sortedArrayList[i])
-        }
-
-        return tailSet
-    }
-
     override fun first(): T {
         Condition.ensureFalse(isEmpty(), "Set is empty", NoSuchElementException::class.java)
         return sortedArrayList[0]
@@ -114,17 +70,15 @@ open class SortedArraySet<T>(initialCapacity: Int,
 
     override fun isEmpty(): Boolean = sortedArrayList.isEmpty()
 
-    override fun contains(element: T): Boolean = sortedArrayList.contains(element)
+    override fun contains(element: T): Boolean = hashCodes.contains(element.hashCode())
 
     override fun iterator(): MutableIterator<T> = sortedArrayList.iterator()
 
     override fun add(element: T): Boolean {
-        ensureNotNull(element, "The item may not be null")
-        val hashCode = element!!.hashCode()
+        val hashCode = element.hashCode()
 
-        if (!hashCodes.contains(hashCode)) {
+        if (hashCodes.add(hashCode)) {
             sortedArrayList.add(element)
-            hashCodes.add(hashCode)
             return true
         }
 
@@ -132,8 +86,7 @@ open class SortedArraySet<T>(initialCapacity: Int,
     }
 
     override fun remove(element: T): Boolean {
-        ensureNotNull(element, "The item may not be null")
-        val hashCode = element!!.hashCode()
+        val hashCode = element.hashCode()
 
         if (hashCodes.remove(hashCode)) {
             sortedArrayList.remove(element)
@@ -150,7 +103,7 @@ open class SortedArraySet<T>(initialCapacity: Int,
             !elements.isEmpty() && elements.map { add(it) }.reduce { acc, b -> acc && b }
 
     override fun retainAll(elements: Collection<T>): Boolean {
-        if (!elements.isEmpty()) {
+        if (elements.isNotEmpty()) {
             var result = false
 
             for (i in size - 1 downTo 0) {
@@ -178,12 +131,74 @@ open class SortedArraySet<T>(initialCapacity: Int,
         sortedArrayList.clear()
     }
 
+    override fun subSet(fromElement: T, toElement: T) = subSet(fromElement, true, toElement, false)
+
+    override fun subSet(fromElement: T, fromInclusive: Boolean, toElement: T, toInclusive: Boolean): NavigableSet<T> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun headSet(toElement: T) = headSet(toElement, false)
+
+    override fun headSet(toElement: T, inclusive: Boolean): NavigableSet<T> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun tailSet(fromElement: T) = tailSet(fromElement, true)
+
+    override fun tailSet(fromElement: T, inclusive: Boolean): NavigableSet<T> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun lower(e: T): T {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun floor(e: T): T {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun higher(e: T): T {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun ceiling(e: T): T {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun descendingSet(): NavigableSet<T> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun pollFirst(): T {
+        if (isNotEmpty()) {
+            val result = sortedArrayList.first()
+            remove(result)
+            return result
+        }
+
+        throw NoSuchElementException()
+    }
+
+    override fun pollLast(): T {
+        if (isNotEmpty()) {
+            val result = sortedArrayList.last()
+            remove(result)
+            return result
+        }
+
+        throw NoSuchElementException()
+    }
+
+    override fun descendingIterator(): MutableIterator<T> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun toString(): String = sortedArrayList.toString()
 
     override fun hashCode(): Int {
         val prime = 31
         var result = 1
-        result = prime * result + hashCodes.hashCode()
+        result = prime * result + sortedArrayList.hashCode()
         return result
     }
 
@@ -195,7 +210,7 @@ open class SortedArraySet<T>(initialCapacity: Int,
         if (javaClass != other.javaClass)
             return false
         val another = other as SortedArraySet<*>
-        return hashCodes == another.hashCodes
+        return sortedArrayList == another.sortedArrayList
     }
 
 }

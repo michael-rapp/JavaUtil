@@ -257,11 +257,6 @@ class SortedArraySetTest {
         assertEquals(2, sortedArraySet.first())
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun testRemoveThrowsExceptionIfItemIsNull() {
-        SortedArraySet<Any>().remove(null)
-    }
-
     @Test
     fun testContainsAll() {
         val collection = Arrays.asList(3, 2, 5, 1)
