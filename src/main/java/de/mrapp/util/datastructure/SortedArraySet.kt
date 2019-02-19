@@ -133,40 +133,41 @@ open class SortedArraySet<T>(initialCapacity: Int, comparator: Comparator<in T>?
 
     override fun subSet(fromElement: T, toElement: T) = subSet(fromElement, true, toElement, false)
 
-    override fun subSet(fromElement: T, fromInclusive: Boolean, toElement: T, toInclusive: Boolean): NavigableSet<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun subSet(fromElement: T, fromInclusive: Boolean, toElement: T,
+                        toInclusive: Boolean): NavigableSet<T> {
+        throw UnsupportedOperationException()
     }
 
     override fun headSet(toElement: T) = headSet(toElement, false)
 
     override fun headSet(toElement: T, inclusive: Boolean): NavigableSet<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun tailSet(fromElement: T) = tailSet(fromElement, true)
 
     override fun tailSet(fromElement: T, inclusive: Boolean): NavigableSet<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun lower(e: T): T {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun floor(e: T): T {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun higher(e: T): T {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun ceiling(e: T): T {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun descendingSet(): NavigableSet<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun pollFirst(): T {
@@ -190,7 +191,7 @@ open class SortedArraySet<T>(initialCapacity: Int, comparator: Comparator<in T>?
     }
 
     override fun descendingIterator(): MutableIterator<T> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        throw UnsupportedOperationException()
     }
 
     override fun toString(): String = sortedArrayList.toString()

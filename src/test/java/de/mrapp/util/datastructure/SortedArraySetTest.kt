@@ -15,6 +15,7 @@ package de.mrapp.util.datastructure
 
 import org.junit.Assert.*
 import java.util.*
+import kotlin.NoSuchElementException
 import kotlin.test.Test
 
 /**
@@ -76,73 +77,6 @@ class SortedArraySetTest {
         val sortedArraySet = SortedArraySet(initialCapacity, comparator)
         assertTrue(sortedArraySet.isEmpty())
         assertEquals(comparator, sortedArraySet.comparator())
-    }
-
-    @Test
-    fun testSubSet() {
-        val collection = Arrays.asList(1, 2, 3, 4, 5)
-        val sortedArraySet = SortedArraySet(collection)
-        val subSet = sortedArraySet.subSet(2, 4)
-        assertEquals(3, subSet.size)
-        val iterator = subSet.iterator()
-        assertEquals(2, iterator.next())
-        assertEquals(3, iterator.next())
-        assertEquals(4, iterator.next())
-    }
-
-    @Test(expected = NoSuchElementException::class)
-    fun testSubSetThrowsExceptionIfFromElementIsNotContained() {
-        val collection = Arrays.asList(1, 2)
-        val sortedArraySet = SortedArraySet(collection)
-        sortedArraySet.subSet(0, 2)
-    }
-
-    @Test(expected = NoSuchElementException::class)
-    fun testSubSetThrowsExceptionIfToElementIsNotContained() {
-        val collection = Arrays.asList(1, 2)
-        val sortedArraySet = SortedArraySet(collection)
-        sortedArraySet.subSet(1, 3)
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun testSubSetThrowsExceptionIfFromElementIsGreaterThanToElement() {
-        val collection = Arrays.asList(1, 2)
-        val sortedArraySet = SortedArraySet(collection)
-        sortedArraySet.subSet(2, 1)
-    }
-
-    @Test
-    fun testHeadSet() {
-        val collection = Arrays.asList(1, 2, 3, 4, 5)
-        val sortedArraySet = SortedArraySet(collection)
-        val headSet = sortedArraySet.headSet(3)
-        assertEquals(3, headSet.size)
-        val iterator = headSet.iterator()
-        assertEquals(1, iterator.next())
-        assertEquals(2, iterator.next())
-        assertEquals(3, iterator.next())
-    }
-
-    @Test(expected = NoSuchElementException::class)
-    fun testHeadSetThrowsExceptionIfToElementIsNotContained() {
-        SortedArraySet<Any>().headSet(1)
-    }
-
-    @Test
-    fun testTailSet() {
-        val collection = Arrays.asList(1, 2, 3, 4, 5)
-        val sortedArraySet = SortedArraySet(collection)
-        val tailSet = sortedArraySet.tailSet(3)
-        assertEquals(3, tailSet.size)
-        val iterator = tailSet.iterator()
-        assertEquals(3, iterator.next())
-        assertEquals(4, iterator.next())
-        assertEquals(5, iterator.next())
-    }
-
-    @Test(expected = NoSuchElementException::class)
-    fun testTailSetThrowsExceptionIfFromElementIsNotContained() {
-        SortedArraySet<Any>().tailSet(1)
     }
 
     @Test
@@ -356,6 +290,40 @@ class SortedArraySetTest {
         assertFalse(sortedArraySet.isEmpty())
         sortedArraySet.clear()
         assertTrue(sortedArraySet.isEmpty())
+    }
+
+    @Test
+    fun testPollFirst() {
+        val sortedArraySet = SortedArraySet(Arrays.asList(3, 2, 5, 1))
+        val first = sortedArraySet.pollFirst()
+        assertEquals(1, first)
+        val iterator = sortedArraySet.iterator()
+        assertEquals(2, iterator.next())
+        assertEquals(3, iterator.next())
+        assertEquals(5, iterator.next())
+        assertFalse(iterator.hasNext())
+    }
+
+    @Test(expected = NoSuchElementException::class)
+    fun testPollFirstThrowsExceptionIfSetIsEmpty() {
+        SortedArraySet<Int>().pollFirst();
+    }
+
+    @Test
+    fun testPollLast() {
+        val sortedArraySet = SortedArraySet(Arrays.asList(3, 2, 5, 1))
+        val last = sortedArraySet.pollLast()
+        assertEquals(5, last)
+        val iterator = sortedArraySet.iterator()
+        assertEquals(1, iterator.next())
+        assertEquals(2, iterator.next())
+        assertEquals(3, iterator.next())
+        assertFalse(iterator.hasNext())
+    }
+
+    @Test(expected = NoSuchElementException::class)
+    fun testPollLastThrowsExceptionIfSetIsEmpty() {
+        SortedArraySet<Int>().pollLast();
     }
 
     @Test
