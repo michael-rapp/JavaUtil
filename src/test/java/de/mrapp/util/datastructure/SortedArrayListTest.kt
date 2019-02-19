@@ -143,4 +143,39 @@ class SortedArrayListTest {
         SortedArrayList<Any>().addAll(0, collection)
     }
 
+    @Test
+    fun testContains() {
+        val sortedArrayList = SortedArrayList<Int>(Arrays.asList(4, 1, 2, 3, 2))
+        assertTrue(sortedArrayList.contains(1))
+        assertTrue(sortedArrayList.contains(2))
+        assertTrue(sortedArrayList.contains(3))
+        assertTrue(sortedArrayList.contains(4))
+        assertFalse(sortedArrayList.contains(5))
+    }
+
+    @Test
+    fun testRemove() {
+        val sortedArrayList = SortedArrayList<Int>(Arrays.asList(4, 1, 2, 3, 2))
+        val result = sortedArrayList.remove(3)
+        assertTrue(result)
+        val iterator = sortedArrayList.iterator()
+        assertEquals(iterator.next(), 1)
+        assertEquals(iterator.next(), 2)
+        assertEquals(iterator.next(), 2)
+        assertEquals(iterator.next(), 4)
+    }
+
+    @Test
+    fun testRemoveIfElementIsNotContained() {
+        val sortedArrayList = SortedArrayList<Int>(Arrays.asList(4, 1, 2, 3, 2))
+        val result = sortedArrayList.remove(5)
+        assertFalse(result)
+        val iterator = sortedArrayList.iterator()
+        assertEquals(iterator.next(), 1)
+        assertEquals(iterator.next(), 2)
+        assertEquals(iterator.next(), 2)
+        assertEquals(iterator.next(), 3)
+        assertEquals(iterator.next(), 4)
+    }
+
 }
