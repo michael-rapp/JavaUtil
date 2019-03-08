@@ -1,5 +1,12 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.2.0 (Mar. 8th 2019)
+
+A feature release, which introduces the following features:
+
+- Added the interfaces `Provide`, `Visitor` and `Identifiable`.
+- Added the utility class `TextUtil` that provides methods for handling texts.
+
 ## Version 2.1.1 (Feb. 23th 2019)
 
 A minor release, which introduces the following changes:
