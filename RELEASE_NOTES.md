@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.2.1 (Mar. 9th 2019)
+
+A minor release, which introduces the following changes:
+
+- Added `createNestedIterable`- and `createNestedIterator`-method to class `IteratorUtil`.
+
 ## Version 2.2.0 (Mar. 8th 2019)
 
 A feature release, which introduces the following features:
