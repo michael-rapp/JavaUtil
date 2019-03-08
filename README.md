@@ -7,6 +7,8 @@
 - The class `Condition` provides methods, which allow to ensure that variables or objects fulfill certain conditions by throwing exceptions, if conditions are violated, e.g. when an object is null.
 - The class `ClassUtil` provides methods, which allow to handle class names.
 - The class `StreamUtil` provides methods, which allow to handle streams.
+- The class `TextUtil` provides methods, which allow to handle texts.
+- The class `IteratorUtil` provides methods, which allow to handle `Iterator`s and `Iterable`s.
 - The class `Pair` is a generic data structure, which eases to pass around a tuple of two objects.
 - The class `Triple` is a generic data structure, which eases to pass around a triple of three objects.
 - The class `SortedArrayList` is an extension of the class `java.util.ArrayList`, which keeps its items sorted whenever updated.
@@ -35,7 +37,7 @@ When using Maven, the following dependency can be added to the `pom.xml`:
 <dependency>
     <groupId>com.github.michael-rapp</groupId>
     <artifactId>java-util</artifactId>
-    <version>2.1.1</version>
+    <version>2.2.0</version>
 </dependency>
 ```
 
