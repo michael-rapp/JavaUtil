@@ -144,7 +144,7 @@ object Condition {
      */
     fun ensureNotEmpty(text: CharSequence?, exceptionMessage: String?,
                        exceptionClass: Class<out RuntimeException>) {
-        if (text == null || text.isEmpty()) {
+        if (TextUtil.isEmpty(text)) {
             throwException(exceptionMessage, exceptionClass)
         }
     }
@@ -164,7 +164,7 @@ object Condition {
      */
     fun ensureHasText(text: CharSequence?, exceptionMessage: String?,
                       exceptionClass: Class<out RuntimeException>) {
-        if (text == null || text.isEmpty() || text.matches("\\s+".toRegex())) {
+        if (TextUtil.hasNoText(text)) {
             throwException(exceptionMessage, exceptionClass)
         }
     }
