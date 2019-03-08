@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package de.mrapp.util.datastructure
+package de.mrapp.util
 
 /**
  * Defines the interface, a class that allows to construct instances of a specific type on demand,
