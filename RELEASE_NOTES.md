@@ -6,6 +6,7 @@ A feature release, which introduces the following features:
 
 - Added the interfaces `Provide`, `Visitor` and `Identifiable`.
 - Added the utility class `TextUtil` that provides methods for handling texts.
+- Added the utility class `IteratorUtil` that provides methods for handling `Iterator`s and `Iterable`s.
 
 ## Version 2.1.1 (Feb. 23th 2019)
 
