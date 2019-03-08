@@ -93,4 +93,35 @@ class IteratorUtilTest {
         assertFalse { iterator2.hasNext() }
     }
 
+    @Test
+    fun testCreateNestedIterable() {
+        val outerIterable = listOf(1, 2, 3)
+        val nestedIterable = IteratorUtil.createNestedIterable(outerIterable) { item ->
+            listOf(item * 10, item * 100).iterator()
+        }
+        val iterator = nestedIterable.iterator();
+        assertEquals(10, iterator.next())
+        assertEquals(100, iterator.next())
+        assertEquals(20, iterator.next())
+        assertEquals(200, iterator.next())
+        assertEquals(30, iterator.next())
+        assertEquals(300, iterator.next())
+        assertFalse { iterator.hasNext() }
+    }
+
+    @Test
+    fun testCreateNestedIterator() {
+        val outerIterator = listOf(1, 2, 3).iterator()
+        val nestedIterator = IteratorUtil.createNestedIterator(outerIterator) { item ->
+            listOf(item * 10, item * 100).iterator()
+        }
+        assertEquals(10, nestedIterator.next())
+        assertEquals(100, nestedIterator.next())
+        assertEquals(20, nestedIterator.next())
+        assertEquals(200, nestedIterator.next())
+        assertEquals(30, nestedIterator.next())
+        assertEquals(300, nestedIterator.next())
+        assertFalse { nestedIterator.hasNext() }
+    }
+
 }

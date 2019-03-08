@@ -33,6 +33,7 @@ object IteratorUtil {
      */
     fun <I, O> createMappedIterable(iterable: Iterable<I>, mapper: (I) -> O): Iterable<O> {
         ensureNotNull(iterable, "The iterable may not be null")
+        ensureNotNull(mapper, "The mapper may not be null")
         return Iterable { createMappedIterator(iterable.iterator(), mapper) }
     }
 
@@ -96,6 +97,8 @@ object IteratorUtil {
      * @param T The type of the items that are traversed by the given [Iterable]
      */
     fun <T> createFilteredIterable(iterable: Iterable<T>, filter: (T) -> Boolean): Iterable<T> {
+        ensureNotNull(iterable, "The iterable may not be null")
+        ensureNotNull(filter, "The filter may not be null")
         return Iterable { createFilteredIterator(iterable.iterator(), filter) }
     }
 
@@ -104,6 +107,8 @@ object IteratorUtil {
      * another [iterator] except for the items for which a [filter] returns false.
      */
     fun <T> createFilteredIterator(iterator: Iterator<T>, filter: (T) -> Boolean): Iterator<T> {
+        ensureNotNull(iterator, "The iterator may not be null")
+        ensureNotNull(filter, "The filter may not be null")
         return object : Iterator<T> {
 
             private var next = computeNext()
@@ -116,6 +121,59 @@ object IteratorUtil {
 
                     if (filter.invoke(next)) {
                         result = next
+                    }
+                }
+
+                return result
+            }
+
+            override fun hasNext() = next != null
+
+            override fun next() = next?.let {
+                next = computeNext()
+                it
+            } ?: throw NoSuchElementException()
+
+        }
+    }
+
+    /**
+     * Creates and returns an [Iterable] that allows to traverse all items of [Iterator]s that are
+     * created for each item that is traversed by an [outerIterable] using a [factory].
+     */
+    fun <T1, T2> createNestedIterable(outerIterable: Iterable<T1>,
+                                      factory: (T1) -> Iterator<T2>): Iterable<T2> {
+        ensureNotNull(outerIterable, "The iterable may not be null")
+        ensureNotNull(factory, "The factory may not be null")
+        return Iterable { createNestedIterator(outerIterable.iterator(), factory) }
+    }
+
+    /**
+     * Creates and returns an [Iterator] that allows to traverse all items of [Iterator]s that are
+     * created for each item that is traversed by an [outerIterator] using a [factory].
+     */
+    fun <T1, T2> createNestedIterator(outerIterator: Iterator<T1>,
+                                      factory: (T1) -> Iterator<T2>): Iterator<T2> {
+        ensureNotNull(outerIterator, "The iterator may not be null")
+        ensureNotNull(factory, "The factory may not be null")
+        return object : Iterator<T2> {
+
+            private var innerIterator: Iterator<T2>? = null
+
+            private var next = computeNext()
+
+            private fun computeNext(): T2? {
+                var result: T2? = null
+                var iterator = innerIterator
+
+                while (result == null
+                        && ((iterator != null && iterator.hasNext()) || outerIterator.hasNext())) {
+                    if (iterator != null && iterator.hasNext()) {
+                        result = iterator.next()
+                    } else {
+                        iterator = factory.invoke(outerIterator.next()).also {
+                            innerIterator = it
+                        }
                     }
                 }
 
