@@ -21,8 +21,7 @@ import java.util.*
  * Therefore an [UnsupportedOperationException] is thrown by the [SortedArrayList.add] and
  * [SortedArrayList.addAll] methods that allow to specify an index.
  *
- * @param T The type of the items, which are contained by the list or null, if the item's
- * implementation of the interface [Comparable] is used instead
+ * @param T The type of the items, which are contained by the list
  * @property initialCapacity The initial capacity of the list
  * @property comparator The comparator that is used to sort the list's items
  * @author Michael Rapp
