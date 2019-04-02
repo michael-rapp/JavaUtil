@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.3.0 (Apr. 3rd 2019)
+
+A feature release, which introduces the following features:
+
+- Added the class `FixedPriorityQueue`.
+
 ## Version 2.2.1 (Mar. 9th 2019)
 
 A minor release, which introduces the following changes:
