@@ -29,6 +29,7 @@ import kotlin.collections.HashSet
  * updated. In addition the hash codes of all items, which are contained by the set, are maintained
  * in a [HashSet] to prevent duplicates from being added to the set.
  *
+ * @param T The type of the items, which are contained by the set
  * @author Michael Rapp
  * @since 1.1.0
  */
