@@ -1,5 +1,11 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.4.0 (Jul. 16th 2019)
+
+A feature release, which introduces the following features:
+
+- Added the class `FlagUtil`.
+
 ## Version 2.3.0 (Apr. 3rd 2019)
 
 A feature release, which introduces the following features:
