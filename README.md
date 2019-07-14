@@ -9,6 +9,7 @@
 - The class `StreamUtil` provides methods, which allow to handle streams.
 - The class `TextUtil` provides methods, which allow to handle texts.
 - The class `IteratorUtil` provides methods, which allow to handle `Iterator`s and `Iterable`s.
+- The class `FlagUtil` provides methods, which allow to handle flags.
 - The class `Pair` is a generic data structure, which eases to pass around a tuple of two objects.
 - The class `Triple` is a generic data structure, which eases to pass around a triple of three objects.
 - The class `SortedArrayList` is an extension of the class `java.util.ArrayList`, which keeps its items sorted whenever updated.
