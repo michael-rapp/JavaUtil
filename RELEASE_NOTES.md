@@ -10,6 +10,7 @@ A feature release, which introduces the following features:
 
 A feature release, which introduces the following features:
 
+- Update Kotlin programming language to version 1.3.30.
 - Added the class `FixedPriorityQueue`.
 
 ## Version 2.2.1 (Mar. 9th 2019)
