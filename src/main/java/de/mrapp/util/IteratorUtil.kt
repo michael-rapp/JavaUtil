@@ -138,6 +138,53 @@ object IteratorUtil {
     }
 
     /**
+     * Creates and returns an [Iterable] that allows to traverse the items that are traversed by
+     * another [iterable] except for the items which are null.
+     *
+     * @param T The type of the items that are traversed by the given [Iterable]
+     */
+    fun <T> createNotNullIterable(iterable: Iterable<T?>): Iterable<T> {
+        ensureNotNull(iterable, "The iterable may not be null")
+        return Iterable { createNotNullIterator(iterable.iterator()) }
+    }
+
+    /**
+     * Creates and returns an [Iterator] that allows to traverse the items that are traversed by
+     * another [iterator] except for the items which are null.
+     *
+     * @param T The type of the items that are traversed by the given [Iterator]
+     */
+    fun <T> createNotNullIterator(iterator: Iterator<T?>): Iterator<T> {
+        ensureNotNull(iterator, "The iterator may not be null")
+        return object : Iterator<T> {
+
+            private var next = computeNext()
+
+            private fun computeNext(): T? {
+                var result: T? = null
+
+                while (result == null && iterator.hasNext()) {
+                    val next = iterator.next()
+
+                    if (next != null) {
+                        result = next
+                    }
+                }
+
+                return result
+            }
+
+            override fun hasNext() = next != null
+
+            override fun next() = next?.let {
+                next = computeNext()
+                it
+            } ?: throw NoSuchElementException()
+
+        }
+    }
+
+    /**
      * Creates and returns an [Iterable] that allows to traverse all items of [Iterator]s that are
      * created for each item that is traversed by an [outerIterable] using a [factory].
      */

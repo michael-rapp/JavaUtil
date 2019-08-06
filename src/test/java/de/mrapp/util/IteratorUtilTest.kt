@@ -94,6 +94,27 @@ class IteratorUtilTest {
     }
 
     @Test
+    fun testCreateNotNullIterable() {
+        val iterable: Iterable<Int?> = listOf(1, 2, null, 4)
+        val iterable2: Iterable<Int> = IteratorUtil.createNotNullIterable(iterable)
+        val iterator = iterable2.iterator()
+        assertEquals(1, iterator.next())
+        assertEquals(2, iterator.next())
+        assertEquals(4, iterator.next())
+        assertFalse { iterator.hasNext() }
+    }
+
+    @Test
+    fun testCreateNotNullIterator() {
+        val iterator: Iterator<Int?> = listOf(1, 2, null, 4).iterator()
+        val iterator2: Iterator<Int> = IteratorUtil.createNotNullIterator(iterator)
+        assertEquals(1, iterator2.next())
+        assertEquals(2, iterator2.next())
+        assertEquals(4, iterator2.next())
+        assertFalse { iterator2.hasNext() }
+    }
+
+    @Test
     fun testCreateNestedIterable() {
         val outerIterable = listOf(1, 2, 3)
         val nestedIterable = IteratorUtil.createNestedIterable(outerIterable) { item ->
