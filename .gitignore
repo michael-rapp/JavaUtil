@@ -25,6 +25,7 @@ hs_err_pid*
 .idea
 *.iml
 build
+out
 
 # Gradle files
 .gradle
