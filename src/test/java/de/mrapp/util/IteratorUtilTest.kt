@@ -16,6 +16,7 @@ package de.mrapp.util
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 
 /**
  * Tests the functionality of the class [IteratorUtil].
@@ -76,19 +77,25 @@ class IteratorUtilTest {
 
     @Test
     fun testCreateFilteredIterable() {
-        val iterable = listOf(1, 2, 3, 4)
-        val iterable2 = IteratorUtil.createFilteredIterable(iterable) { item -> item % 2 == 0 }
+        val iterable = listOf(1, 2, null, 3, 4)
+        val iterable2 = IteratorUtil.createFilteredIterable(iterable) { item ->
+            item == null || item % 2 == 0
+        }
         val iterator = iterable2.iterator()
         assertEquals(2, iterator.next())
+        assertNull(iterator.next())
         assertEquals(4, iterator.next())
         assertFalse { iterator.hasNext() }
     }
 
     @Test
     fun testCreateFilteredIterator() {
-        val iterator = listOf(1, 2, 3, 4).iterator()
-        val iterator2 = IteratorUtil.createFilteredIterator(iterator) { item -> item % 2 == 0 }
+        val iterator = listOf(1, 2, null, 3, 4).iterator()
+        val iterator2 = IteratorUtil.createFilteredIterator(iterator) { item ->
+            item == null || item % 2 == 0
+        }
         assertEquals(2, iterator2.next())
+        assertNull(iterator2.next())
         assertEquals(4, iterator2.next())
         assertFalse { iterator2.hasNext() }
     }
@@ -116,15 +123,16 @@ class IteratorUtilTest {
 
     @Test
     fun testCreateNestedIterable() {
-        val outerIterable = listOf(1, 2, 3)
+        val outerIterable = listOf(1, 2, null, 3)
         val nestedIterable = IteratorUtil.createNestedIterable(outerIterable) { item ->
-            listOf(item * 10, item * 100).iterator()
+            item?.let { listOf(item * 10, item * 100).iterator() } ?: listOf(item).iterator()
         }
         val iterator = nestedIterable.iterator();
         assertEquals(10, iterator.next())
         assertEquals(100, iterator.next())
         assertEquals(20, iterator.next())
         assertEquals(200, iterator.next())
+        assertNull(iterator.next())
         assertEquals(30, iterator.next())
         assertEquals(300, iterator.next())
         assertFalse { iterator.hasNext() }
@@ -132,14 +140,15 @@ class IteratorUtilTest {
 
     @Test
     fun testCreateNestedIterator() {
-        val outerIterator = listOf(1, 2, 3).iterator()
+        val outerIterator = listOf(1, 2, null, 3).iterator()
         val nestedIterator = IteratorUtil.createNestedIterator(outerIterator) { item ->
-            listOf(item * 10, item * 100).iterator()
+            item?.let { listOf(item * 10, item * 100).iterator() } ?: listOf(item).iterator()
         }
         assertEquals(10, nestedIterator.next())
         assertEquals(100, nestedIterator.next())
         assertEquals(20, nestedIterator.next())
         assertEquals(200, nestedIterator.next())
+        assertNull(nestedIterator.next())
         assertEquals(30, nestedIterator.next())
         assertEquals(300, nestedIterator.next())
         assertFalse { nestedIterator.hasNext() }

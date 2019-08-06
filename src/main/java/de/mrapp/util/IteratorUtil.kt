@@ -96,7 +96,7 @@ object IteratorUtil {
      *
      * @param T The type of the items that are traversed by the given [Iterable]
      */
-    fun <T> createFilteredIterable(iterable: Iterable<T>, filter: (T) -> Boolean): Iterable<T> {
+    fun <T> createFilteredIterable(iterable: Iterable<T>, filter: (T) -> Boolean): Iterable<T?> {
         ensureNotNull(iterable, "The iterable may not be null")
         ensureNotNull(filter, "The filter may not be null")
         return Iterable { createFilteredIterator(iterable.iterator(), filter) }
@@ -108,33 +108,40 @@ object IteratorUtil {
      *
      * @param T The type of the items that are traversed by the given [Iterator]
      */
-    fun <T> createFilteredIterator(iterator: Iterator<T>, filter: (T) -> Boolean): Iterator<T> {
+    fun <T> createFilteredIterator(iterator: Iterator<T>, filter: (T) -> Boolean): Iterator<T?> {
         ensureNotNull(iterator, "The iterator may not be null")
         ensureNotNull(filter, "The filter may not be null")
-        return object : Iterator<T> {
+        return object : Iterator<T?> {
 
-            private var next = computeNext()
+            private var hasNext = false
 
-            private fun computeNext(): T? {
-                var result: T? = null
+            private var next: T? = null
 
-                while (result == null && iterator.hasNext()) {
+            init {
+                computeNext()
+            }
+
+            private fun computeNext() {
+                this.hasNext = false
+
+                while (iterator.hasNext()) {
                     val next = iterator.next()
 
                     if (filter.invoke(next)) {
-                        result = next
+                        this.hasNext = true
+                        this.next = next
+                        return
                     }
                 }
-
-                return result
             }
 
-            override fun hasNext() = next != null
+            override fun hasNext() = hasNext
 
-            override fun next() = next?.let {
-                next = computeNext()
-                it
-            } ?: throw NoSuchElementException()
+            override fun next() = if (hasNext) {
+                val result = next
+                computeNext()
+                result
+            } else throw NoSuchElementException()
 
         }
     }
@@ -194,7 +201,7 @@ object IteratorUtil {
      * @param T2 The type of the items that should be traversed by the created [Iterable]
      */
     fun <T1, T2> createNestedIterable(outerIterable: Iterable<T1>,
-                                      factory: (T1) -> Iterator<T2>): Iterable<T2> {
+                                      factory: (T1) -> Iterator<T2>): Iterable<T2?> {
         ensureNotNull(outerIterable, "The iterable may not be null")
         ensureNotNull(factory, "The factory may not be null")
         return Iterable { createNestedIterator(outerIterable.iterator(), factory) }
@@ -208,39 +215,45 @@ object IteratorUtil {
      * @param T2 The type of the items that should be traversed by the created [Iterator]
      */
     fun <T1, T2> createNestedIterator(outerIterator: Iterator<T1>,
-                                      factory: (T1) -> Iterator<T2>): Iterator<T2> {
+                                      factory: (T1) -> Iterator<T2>): Iterator<T2?> {
         ensureNotNull(outerIterator, "The iterator may not be null")
         ensureNotNull(factory, "The factory may not be null")
-        return object : Iterator<T2> {
+        return object : Iterator<T2?> {
 
             private var innerIterator: Iterator<T2>? = null
 
-            private var next = computeNext()
+            private var hasNext = false
 
-            private fun computeNext(): T2? {
-                var result: T2? = null
+            private var next: T2? = null
+
+            init {
+                computeNext()
+            }
+
+            private fun computeNext() {
+                this.hasNext = false
                 var iterator = innerIterator
 
-                while (result == null
-                        && ((iterator != null && iterator.hasNext()) || outerIterator.hasNext())) {
+                while ((iterator != null && iterator.hasNext()) || outerIterator.hasNext()) {
                     if (iterator != null && iterator.hasNext()) {
-                        result = iterator.next()
+                        this.hasNext = true
+                        this.next = iterator.next()
+                        return
                     } else {
                         iterator = factory.invoke(outerIterator.next()).also {
                             innerIterator = it
                         }
                     }
                 }
-
-                return result
             }
 
-            override fun hasNext() = next != null
+            override fun hasNext() = hasNext
 
-            override fun next() = next?.let {
-                next = computeNext()
-                it
-            } ?: throw NoSuchElementException()
+            override fun next() = if (hasNext) {
+                val result = next
+                computeNext()
+                result
+            } else throw NoSuchElementException()
 
         }
     }
