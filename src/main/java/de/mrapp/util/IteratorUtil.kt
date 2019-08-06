@@ -105,6 +105,8 @@ object IteratorUtil {
     /**
      * Creates and returns an [Iterator] that allows to traverse the items that are traversed by
      * another [iterator] except for the items for which a [filter] returns false.
+     *
+     * @param T The type of the items that are traversed by the given [Iterator]
      */
     fun <T> createFilteredIterator(iterator: Iterator<T>, filter: (T) -> Boolean): Iterator<T> {
         ensureNotNull(iterator, "The iterator may not be null")
@@ -187,6 +189,9 @@ object IteratorUtil {
     /**
      * Creates and returns an [Iterable] that allows to traverse all items of [Iterator]s that are
      * created for each item that is traversed by an [outerIterable] using a [factory].
+     *
+     * @param T1 The type of the items that are traversed by the given [Iterable]
+     * @param T2 The type of the items that should be traversed by the created [Iterable]
      */
     fun <T1, T2> createNestedIterable(outerIterable: Iterable<T1>,
                                       factory: (T1) -> Iterator<T2>): Iterable<T2> {
@@ -198,6 +203,9 @@ object IteratorUtil {
     /**
      * Creates and returns an [Iterator] that allows to traverse all items of [Iterator]s that are
      * created for each item that is traversed by an [outerIterator] using a [factory].
+     *
+     * @param T1 The type of the items that are traversed by the given [Iterator]
+     * @param T2 The type of the items that should be traversed by the created [Iterator]
      */
     fun <T1, T2> createNestedIterator(outerIterator: Iterator<T1>,
                                       factory: (T1) -> Iterator<T2>): Iterator<T2> {
