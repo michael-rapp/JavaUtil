@@ -1,5 +1,12 @@
 # JavaUtil - RELEASE NOTES
 
+## Version 2.4.1 (Aug. 6th 2019)
+
+A bugfix release, which fixes the following issues:
+
+- The `createFilteredIterable`-, `createFilteredIterator`-, `createNestedIterable`-, and `createNestedIterator`-methods of the class `IteratorUtil` now properly handle null values.
+- Added the `createNotNullIterable`- and `createNotNullIterator`-methods to the class `IteratorUtil`.
+
 ## Version 2.4.0 (Jul. 16th 2019)
 
 A feature release, which introduces the following features:
