@@ -1,0 +1,192 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>FileUtil - JavaUtil</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">JavaUtil</a>&nbsp;/&nbsp;<a href="../index.html">de.mrapp.util</a>&nbsp;/&nbsp;<a href="./index.html">FileUtil</a><br/>
+<br/>
+<h1>FileUtil</h1>
+<code><span class="keyword">object </span><span class="identifier">FileUtil</span></code>
+<p>An utility class that provides methods for handling files.</p>
+<p><strong>Author</strong><br/>
+Michael Rapp</p>
+<p><strong>Since</strong><br/>
+2.5.0</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-s-u-f-f-i-x_-s-e-p-a-r-a-t-o-r.html">SUFFIX_SEPARATOR</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">SUFFIX_SEPARATOR</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The symbol(s) that separate a file's name from its suffix as a string.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-s-u-f-f-i-x_-s-e-p-a-r-a-t-o-r_-c-h-a-r.html">SUFFIX_SEPARATOR_CHAR</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">SUFFIX_SEPARATOR_CHAR</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char/index.html"><span class="identifier">Char</span></a></code>
+<p>The symbol(s) that separate a file's name from its suffix as a char.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="append-suffix.html">appendSuffix</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">appendSuffix</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$appendSuffix(java.io.File, kotlin.String, kotlin.String)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$appendSuffix(java.io.File, kotlin.String, kotlin.String)/suffix">suffix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$appendSuffix(java.io.File, kotlin.String, kotlin.String)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a></code>
+<p>Returns a specific <a href="append-suffix.html#de.mrapp.util.FileUtil$appendSuffix(java.io.File, kotlin.String, kotlin.String)/file">file</a> with a <a href="append-suffix.html#de.mrapp.util.FileUtil$appendSuffix(java.io.File, kotlin.String, kotlin.String)/suffix">suffix</a> appended. Any suffix the file may already have is
+retained. It can be removed by using the method <a href="remove-suffix.html">removeSuffix</a> beforehand. If the given
+suffix does not already start with the <a href="append-suffix.html#de.mrapp.util.FileUtil$appendSuffix(java.io.File, kotlin.String, kotlin.String)/separator">separator</a>, or the file name does not end with it, it
+is added automatically.</p>
+<code><span class="keyword">fun </span><span class="identifier">appendSuffix</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$appendSuffix(kotlin.String, kotlin.String, kotlin.String)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$appendSuffix(kotlin.String, kotlin.String, kotlin.String)/suffix">suffix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$appendSuffix(kotlin.String, kotlin.String, kotlin.String)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns a specific <a href="append-suffix.html#de.mrapp.util.FileUtil$appendSuffix(kotlin.String, kotlin.String, kotlin.String)/fileName">fileName</a> with a <a href="append-suffix.html#de.mrapp.util.FileUtil$appendSuffix(kotlin.String, kotlin.String, kotlin.String)/suffix">suffix</a> appended. Any suffix the file may already have
+is retained. It can be removed by using the method <a href="remove-suffix.html">removeSuffix</a> beforehand. If the given
+suffix does not already start with the <a href="append-suffix.html#de.mrapp.util.FileUtil$appendSuffix(kotlin.String, kotlin.String, kotlin.String)/separator">separator</a>, or the file name does not end with it, it
+is added automatically.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="copy.html">copy</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">copy</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$copy(java.io.File, java.io.File, kotlin.Boolean)/source">source</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$copy(java.io.File, java.io.File, kotlin.Boolean)/destination">destination</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$copy(java.io.File, java.io.File, kotlin.Boolean)/overwrite">overwrite</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Copies a <a href="copy.html#de.mrapp.util.FileUtil$copy(java.io.File, java.io.File, kotlin.Boolean)/source">source</a> file to a specific <a href="copy.html#de.mrapp.util.FileUtil$copy(java.io.File, java.io.File, kotlin.Boolean)/destination">destination</a>. To create the parent directories of the
+destination, the method <a href="mkdirs.html">mkdirs</a> may be used beforehand. If <a href="copy.html#de.mrapp.util.FileUtil$copy(java.io.File, java.io.File, kotlin.Boolean)/overwrite">overwrite</a> is true, the file is
+overwritten if it does already exist.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="create.html">create</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">create</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$create(java.io.File, kotlin.Boolean)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$create(java.io.File, kotlin.Boolean)/overwrite">overwrite</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Creates a new, empty <a href="create.html#de.mrapp.util.FileUtil$create(java.io.File, kotlin.Boolean)/file">file</a>. If <a href="create.html#de.mrapp.util.FileUtil$create(java.io.File, kotlin.Boolean)/overwrite">overwrite</a> is true, the file is overwritten, if it does
+already exist.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="delete.html">delete</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$delete(java.io.File)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Deletes a specific <a href="delete.html#de.mrapp.util.FileUtil$delete(java.io.File)/file">file</a>. If a directory and its contents should be deleted, use the method
+<a href="delete-recursively.html">deleteRecursively</a> instead.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="delete-recursively.html">deleteRecursively</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">deleteRecursively</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$deleteRecursively(java.io.File)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Deletes a specific <a href="delete-recursively.html#de.mrapp.util.FileUtil$deleteRecursively(java.io.File)/file">file</a>. If the file is a directory, all contained files and subdirectories
+are deleted recursively.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-suffix.html">getSuffix</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getSuffix</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$getSuffix(java.io.File, kotlin.String, kotlin.Boolean)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getSuffix(java.io.File, kotlin.String, kotlin.Boolean)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getSuffix(java.io.File, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the suffix of a specific <a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(java.io.File, kotlin.String, kotlin.Boolean)/file">file</a> or null, if the file does not have a suffix. If
+<a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(java.io.File, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</a> is true, the suffix is considered to start at the first occurrence of the
+<a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(java.io.File, kotlin.String, kotlin.Boolean)/separator">separator</a>, otherwise it is considered to start at the last occurrence. The <a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(java.io.File, kotlin.String, kotlin.Boolean)/separator">separator</a> is
+not included in the returned suffix.</p>
+<code><span class="keyword">fun </span><span class="identifier">getSuffix</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$getSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Returns the suffix of a file with a specific <a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/fileName">fileName</a> or null, if the file does not have a
+suffix. If <a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</a> is true, the suffix is considered to start at the first
+occurrence of the <a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/separator">separator</a>, otherwise it is considered to start at the last occurrence.
+The <a href="get-suffix.html#de.mrapp.util.FileUtil$getSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/separator">separator</a> is not included in the returned suffix.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-unique-file.html">getUniqueFile</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getUniqueFile</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$getUniqueFile(java.io.File, kotlin.String, kotlin.String)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getUniqueFile(java.io.File, kotlin.String, kotlin.String)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getUniqueFile(java.io.File, kotlin.String, kotlin.String)/suffix">suffix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a></code>
+<p>Returns a variant of a specific <a href="get-unique-file.html#de.mrapp.util.FileUtil$getUniqueFile(java.io.File, kotlin.String, kotlin.String)/file">file</a> which is unique within its parent directory. If the
+name of the given file is not unique, a number will be appended. Optionally, a <a href="get-unique-file.html#de.mrapp.util.FileUtil$getUniqueFile(java.io.File, kotlin.String, kotlin.String)/suffix">suffix</a> may
+be added to the name of the given file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-unique-file-name.html">getUniqueFileName</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getUniqueFileName</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$getUniqueFileName(java.io.File, kotlin.String, kotlin.String, kotlin.String)/directory">directory</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getUniqueFileName(java.io.File, kotlin.String, kotlin.String, kotlin.String)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getUniqueFileName(java.io.File, kotlin.String, kotlin.String, kotlin.String)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$getUniqueFileName(java.io.File, kotlin.String, kotlin.String, kotlin.String)/suffix">suffix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns a variant of a specific <a href="get-unique-file-name.html#de.mrapp.util.FileUtil$getUniqueFileName(java.io.File, kotlin.String, kotlin.String, kotlin.String)/fileName">fileName</a> which is unique within a <a href="get-unique-file-name.html#de.mrapp.util.FileUtil$getUniqueFileName(java.io.File, kotlin.String, kotlin.String, kotlin.String)/directory">directory</a>. If the given
+file name is not unique, a number will be appended. Optionally, a <a href="get-unique-file-name.html#de.mrapp.util.FileUtil$getUniqueFileName(java.io.File, kotlin.String, kotlin.String, kotlin.String)/suffix">suffix</a> may be added to
+the given file name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="mkdir.html">mkdir</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">mkdir</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$mkdir(java.io.File)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Creates the directory, a specific <a href="mkdir.html#de.mrapp.util.FileUtil$mkdir(java.io.File)/file">file</a> refers to. It is assumed, that the parent
+directories already exist. If the parent directories should be created as well, use the
+method <a href="mkdirs.html">mkdirs</a> instead.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="mkdirs.html">mkdirs</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">mkdirs</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$mkdirs(java.io.File)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Creates the directory, a specific <a href="mkdirs.html#de.mrapp.util.FileUtil$mkdirs(java.io.File)/file">file</a> refers to, if it does not already exist. If
+necessary, the parent directories are created as well. If no parent directories should be
+created, use the method <a href="#">mkdir</a> instead.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remove-suffix.html">removeSuffix</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">removeSuffix</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$removeSuffix(java.io.File, kotlin.String, kotlin.Boolean)/file">file</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$removeSuffix(java.io.File, kotlin.String, kotlin.Boolean)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$removeSuffix(java.io.File, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a></code>
+<p>Returns a specific <a href="remove-suffix.html#de.mrapp.util.FileUtil$removeSuffix(java.io.File, kotlin.String, kotlin.Boolean)/file">file</a> with its suffix removed. If the file does not have a suffix, the
+name is returned as it is. If <a href="remove-suffix.html#de.mrapp.util.FileUtil$removeSuffix(java.io.File, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</a> is true, the suffix is considered to start at
+the first occurrence of the <a href="remove-suffix.html#de.mrapp.util.FileUtil$removeSuffix(java.io.File, kotlin.String, kotlin.Boolean)/separator">separator</a>, otherwise it is considered to start at the last
+occurrence.</p>
+<code><span class="keyword">fun </span><span class="identifier">removeSuffix</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$removeSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/fileName">fileName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$removeSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/separator">separator</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;SUFFIX_SEPARATOR<span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$removeSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns a specific <a href="remove-suffix.html#de.mrapp.util.FileUtil$removeSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/fileName">fileName</a> with its suffix removed. If the file does not have a suffix,
+the name is returned as it is. If <a href="remove-suffix.html#de.mrapp.util.FileUtil$removeSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/firstOccurrence">firstOccurrence</a> is true, the suffix is considered to
+start at the first occurrence of the <a href="remove-suffix.html#de.mrapp.util.FileUtil$removeSuffix(kotlin.String, kotlin.String, kotlin.Boolean)/separator">separator</a>, otherwise it is considered to start at the
+last occurrence.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="write-to.html">writeTo</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">writeTo</span><span class="symbol">(</span><span class="identifier" id="de.mrapp.util.FileUtil$writeTo(kotlin.ByteArray, java.io.File, kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span class="identifier">ByteArray</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$writeTo(kotlin.ByteArray, java.io.File, kotlin.Boolean)/destination">destination</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="de.mrapp.util.FileUtil$writeTo(kotlin.ByteArray, java.io.File, kotlin.Boolean)/overwrite">overwrite</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Writes the <a href="write-to.html#de.mrapp.util.FileUtil$writeTo(kotlin.ByteArray, java.io.File, kotlin.Boolean)/data">data</a> in a byte array to a specific <a href="write-to.html#de.mrapp.util.FileUtil$writeTo(kotlin.ByteArray, java.io.File, kotlin.Boolean)/destination">destination</a>. If <a href="write-to.html#de.mrapp.util.FileUtil$writeTo(kotlin.ByteArray, java.io.File, kotlin.Boolean)/overwrite">overwrite</a> is true, the
+file is overwritten if it does already exist.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
