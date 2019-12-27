@@ -1,5 +1,12 @@
 # JavaUtil - RELEASE NOTES
 
+## Versoin 2.5.0 (Dec. 28th 2019)
+
+A feature release, which introduces the following changes:
+
+- Added the class `FileUtil` which provides methods for handling files.
+- Updated the Kotlin programming language to version 1.3.61.
+
 ## Version 2.4.1 (Aug. 6th 2019)
 
 A bugfix release, which fixes the following issues:
