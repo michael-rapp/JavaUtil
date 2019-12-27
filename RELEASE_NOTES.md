@@ -1,6 +1,6 @@
 # JavaUtil - RELEASE NOTES
 
-## Versoin 2.5.0 (Dec. 28th 2019)
+## Version 2.5.0 (Dec. 28th 2019)
 
 A feature release, which introduces the following changes:
 
